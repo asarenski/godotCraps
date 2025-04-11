@@ -3,5 +3,6 @@ extends CanvasLayer
 func _ready():
 	hide()
 
-func _on_start_game():
+func on_start_game():
+	print('HUD started')
 	show()
