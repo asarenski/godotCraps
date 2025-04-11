@@ -2,8 +2,6 @@ extends State
 
 class_name RollingState
 
-var dice_result: int = 0
-
 func setup(change_state: Callable, previous_state: State, hud: Node) -> void:
 	super(change_state, previous_state, hud)
 	hud.update_phase("Rolling...")
@@ -13,6 +11,10 @@ func roll_dice() -> void:
 	var die1 = randi_range(1, 6)
 	var die2 = randi_range(1, 6)
 	dice_result = die1 + die2
+	
+	# Update HUD with dice result
+	hud.get_node("DiceResult").show()
+	hud.update_dice_result(die1, die2)
 	
 	# Determine next state based on roll result
 	if game_phase == State.GamePhase.COME_OUT:

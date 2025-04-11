@@ -18,6 +18,7 @@ var game_phase
 var point
 var bankroll
 var bet
+var dice_result
 
 var change_state: Callable
 var previous_state: State
@@ -34,10 +35,10 @@ func setup(change_state: Callable, previous_state: State, hud: Node):
 		point = previous_state.point
 		bankroll = previous_state.bankroll
 		bet = previous_state.bet
+		dice_result = previous_state.dice_result
 	else:
 		# Initialize default values if no previous state
 		game_phase = GamePhase.COME_OUT
-		point = 0
 		bankroll = 100  # Default starting bankroll
 		bet = 0
 

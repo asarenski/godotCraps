@@ -24,6 +24,12 @@ func update_bet(bet):
 func update_phase(phase_text: String):
 	$Phase.text = phase_text
 
+func update_dice_result(dice1: int, dice2: int):
+	$DiceResult.text = "Dice: %d + %d = %d" % [dice1, dice2, dice1 + dice2]
+
+func update_round_result(result_text: String):
+	$RoundResult.text = result_text
+
 func _on_bet_5_pressed():
 	bet_increased.emit(5)
 
