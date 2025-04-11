@@ -5,5 +5,9 @@ func _ready():
 
 func on_start_game():
 	show()
-	$Bankroll.text = "bankroll $1m"
-	$Phase.text = "some phase"
+
+func update_bankroll(bankroll):
+	$Bankroll.text = "Bankroll: %d" % bankroll
+
+func update_phase(phase_text: String):
+	$Phase.text = phase_text

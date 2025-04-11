@@ -17,9 +17,14 @@ enum BetType {
 # Initial game state
 var game_phase = GamePhase.COME_OUT
 var point = null
-var bankroll = 1000
+var bankroll = 100
 
 var change_state: Callable
-func setup(change_state: Callable, persistent_state: PersistentState):
+var persistent_state: PersistentState
+var hud: Node
+
+func setup(change_state: Callable, persistent_state: PersistentState, hud: Node):
 	self.change_state = change_state
 	self.persistent_state = persistent_state
+	self.hud = hud
+	self.hud.update_bankroll(bankroll)
