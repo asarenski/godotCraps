@@ -1,0 +1,173 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Example Game Implementation
+```GDScript
+extends Node
+
+# Game phases
+enum GamePhase {
+	COME_OUT,    # Initial roll phase
+	POINT,       # Point established phase
+	RESOLUTION   # Resolving bets phase
+}
+
+# Bet types
+enum BetType {
+	PASS_LINE,
+}
+
+# Current game state
+var current_phase = GamePhase.COME_OUT
+var point_number = 0
+var bankroll = 1000
+var active_bets = {}
+
+# Signal definitions
+signal phase_changed(new_phase)
+signal point_established(point)
+signal bet_resolved(bet_type, amount, won)
+signal bankroll_updated(new_amount)
+signal bet_placed(bet_type, amount)
+
+# Basic craps rules implementation
+func roll_dice() -> Array:
+	# Returns array of two random numbers between 1 and 6
+	return [randi_range(1, 6), randi_range(1, 6)]
+
+func calculate_roll_sum(dice: Array) -> int:
+	return dice[0] + dice[1]
+
+func is_hard_way(dice: Array) -> bool:
+	return dice[0] == dice[1]
+
+func place_bet(bet_type: BetType, amount: int) -> bool:
+	if amount > bankroll:
+		return false
+	
+	bankroll -= amount
+	if not active_bets.has(bet_type):
+		active_bets[bet_type] = 0
+	active_bets[bet_type] += amount
+	
+	emit_signal("bet_placed", bet_type, amount)
+	emit_signal("bankroll_updated", bankroll)
+	return true
+
+func process_roll(dice: Array) -> void:
+	var roll_sum = calculate_roll_sum(dice)
+	var is_hard = is_hard_way(dice)
+	
+	match current_phase:
+		GamePhase.COME_OUT:
+			_process_come_out_roll(roll_sum, is_hard)
+		GamePhase.POINT:
+			_process_point_roll(roll_sum, is_hard)
+		GamePhase.RESOLUTION:
+			_process_resolution_roll(roll_sum, is_hard)
+
+func _process_come_out_roll(roll_sum: int, is_hard: bool) -> void:
+	# Process pass line bets
+	if active_bets.has(BetType.PASS_LINE):
+		match roll_sum:
+			7, 11:
+				# Natural win
+				var winnings = active_bets[BetType.PASS_LINE] * 2
+				bankroll += winnings
+				emit_signal("bet_resolved", BetType.PASS_LINE, winnings, true)
+			2, 3, 12:
+				# Craps - pass line loses
+				emit_signal("bet_resolved", BetType.PASS_LINE, active_bets[BetType.PASS_LINE], false)
+			_:
+				# Point established
+				point_number = roll_sum
+				current_phase = GamePhase.POINT
+				emit_signal("point_established", point_number)
+	
+	# Process don't pass bets
+	if active_bets.has(BetType.DONT_PASS):
+		match roll_sum:
+			2, 3:
+				# Don't pass wins
+				var winnings = active_bets[BetType.DONT_PASS] * 2
+				bankroll += winnings
+				emit_signal("bet_resolved", BetType.DONT_PASS, winnings, true)
+			7, 11:
+				# Don't pass loses
+				emit_signal("bet_resolved", BetType.DONT_PASS, active_bets[BetType.DONT_PASS], false)
+			12:
+				# Push (tie)
+				bankroll += active_bets[BetType.DONT_PASS]
+				emit_signal("bet_resolved", BetType.DONT_PASS, active_bets[BetType.DONT_PASS], true)
+			_:
+				point_number = roll_sum
+				current_phase = GamePhase.POINT
+				emit_signal("point_established", point_number)
+	
+	# Process field bets
+	if active_bets.has(BetType.FIELD):
+		match roll_sum:
+			2:
+				var winnings = active_bets[BetType.FIELD] * 3
+				bankroll += winnings
+				emit_signal("bet_resolved", BetType.FIELD, winnings, true)
+			12:
+				var winnings = active_bets[BetType.FIELD] * 3
+				bankroll += winnings
+				emit_signal("bet_resolved", BetType.FIELD, winnings, true)
+			3, 4, 9, 10, 11:
+				var winnings = active_bets[BetType.FIELD] * 2
+				bankroll += winnings
+				emit_signal("bet_resolved", BetType.FIELD, winnings, true)
+			_:
+				emit_signal("bet_resolved", BetType.FIELD, active_bets[BetType.FIELD], false)
+	
+	emit_signal("phase_changed", current_phase)
+	emit_signal("bankroll_updated", bankroll)
+
+func _process_point_roll(roll_sum: int, is_hard: bool) -> void:
+	# Process pass line bets
+	if active_bets.has(BetType.PASS_LINE):
+		if roll_sum == point_number:
+			# Point made - pass line wins
+			var winnings = active_bets[BetType.PASS_LINE] * 2
+			bankroll += winnings
+			emit_signal("bet_resolved", BetType.PASS_LINE, winnings, true)
+			current_phase = GamePhase.COME_OUT
+			point_number = 0
+		elif roll_sum == 7:
+			# Seven out - pass line loses
+			emit_signal("bet_resolved", BetType.PASS_LINE, active_bets[BetType.PASS_LINE], false)
+			current_phase = GamePhase.COME_OUT
+			point_number = 0
+	
+	# Process don't pass bets
+	if active_bets.has(BetType.DONT_PASS):
+		if roll_sum == 7:
+			# Seven out - don't pass wins
+			var winnings = active_bets[BetType.DONT_PASS] * 2
+			bankroll += winnings
+			emit_signal("bet_resolved", BetType.DONT_PASS, winnings, true)
+			current_phase = GamePhase.COME_OUT
+			point_number = 0
+		elif roll_sum == point_number:
+			# Point made - don't pass loses
+			emit_signal("bet_resolved", BetType.DONT_PASS, active_bets[BetType.DONT_PASS], false)
+			current_phase = GamePhase.COME_OUT
+			point_number = 0
+	
+	emit_signal("phase_changed", current_phase)
+	emit_signal("bankroll_updated", bankroll)
+
+func get_current_phase_name() -> String:
+	match current_phase:
+		GamePhase.COME_OUT:
+			return "comeout"
+		GamePhase.POINT:
+			return "point"
+		GamePhase.RESOLUTION:
+			return "resolution"
+	return "unknown" 
+```
