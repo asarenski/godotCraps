@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cnb5a5dss37ra"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="StartUI" type="CanvasLayer"]
 
 [node name="Message" type="Label" parent="."]
 anchors_preset = 8
