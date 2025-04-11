@@ -4,5 +4,6 @@ func _ready():
 	hide()
 
 func on_start_game():
-	print('HUD started')
 	show()
+	$Bankroll.text = "bankroll $1m"
+	$Phase.text = "some phase"

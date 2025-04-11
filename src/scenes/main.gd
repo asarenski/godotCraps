@@ -4,5 +4,5 @@ func _ready():
 	$Start.start_game.connect(_on_start_game)
 
 func _on_start_game():
-	print('main started')
+	PersistentState.new()
 	$HUD.on_start_game()
