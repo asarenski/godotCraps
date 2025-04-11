@@ -18,6 +18,7 @@ enum BetType {
 var game_phase = GamePhase.COME_OUT
 var point = null
 var bankroll = 100
+var bet = 0
 
 var change_state: Callable
 var persistent_state: PersistentState
@@ -28,3 +29,8 @@ func setup(change_state: Callable, persistent_state: PersistentState, hud: Node)
 	self.persistent_state = persistent_state
 	self.hud = hud
 	self.hud.update_bankroll(bankroll)
+	self.hud.update_bet(bet)
+
+func update_bet(new_bet: int):
+	bet = new_bet
+	hud.update_bet(bet)

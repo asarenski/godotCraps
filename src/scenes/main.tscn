@@ -54,14 +54,25 @@ offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
 
+[node name="Bet" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 28.0
+offset_right = 20.0
+offset_bottom = 51.0
+grow_horizontal = 2
+text = "Current Bet: 0"
+
 [node name="Phase" type="Label" parent="HUD"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -60.0
-offset_top = 28.0
+offset_top = 56.0
 offset_right = 64.0
-offset_bottom = 51.0
+offset_bottom = 79.0
 grow_horizontal = 2
 
 [connection signal="pressed" from="Start/StartButton" to="Start" method="_on_start_button_pressed"]
