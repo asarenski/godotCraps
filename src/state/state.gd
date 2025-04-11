@@ -6,7 +6,6 @@ class_name State
 enum GamePhase {
 	COME_OUT,    # Initial roll phase
 	POINT,       # Point established phase
-	RESOLUTION   # Resolving bets phase
 }
 
 # Bet types
@@ -14,22 +13,33 @@ enum BetType {
 	PASS_LINE,
 }
 
-# Initial game state
-var game_phase = GamePhase.COME_OUT
-var point = null
-var bankroll = 100
-var bet = 0
+# Game state variables
+var game_phase
+var point
+var bankroll
+var bet
 
 var change_state: Callable
-var persistent_state: PersistentState
+var previous_state: State
 var hud: Node
 
-func setup(change_state: Callable, persistent_state: PersistentState, hud: Node):
+func setup(change_state: Callable, previous_state: State, hud: Node):
 	self.change_state = change_state
-	self.persistent_state = persistent_state
+	self.previous_state = previous_state
 	self.hud = hud
-	self.hud.update_bankroll(bankroll)
-	self.hud.update_bet(bet)
+	
+	# set game state values from previous_state
+	if previous_state != null:
+		game_phase = previous_state.game_phase
+		point = previous_state.point
+		bankroll = previous_state.bankroll
+		bet = previous_state.bet
+	else:
+		# Initialize default values if no previous state
+		game_phase = GamePhase.COME_OUT
+		point = 0
+		bankroll = 100  # Default starting bankroll
+		bet = 0
 
 func update_bet(new_bet: int):
 	bet = new_bet

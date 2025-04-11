@@ -5,16 +5,20 @@ class_name StateFactory
 var states
 
 enum StateNames {
-	BETTING,
-	COME_OUT,
-	POINT
+	COMEOUT_BETTING,
+	POINT,
+	ROLLING,
+	WIN_ROUND,
+	LOSE_ROUND
 }
 
 func _init():
 	states = {
-		StateNames.BETTING: BettingState,
-		StateNames.COME_OUT: ComeOutState,
-		StateNames.POINT: PointState
+		StateNames.COMEOUT_BETTING: ComeOutBettingState,
+		StateNames.POINT: PointState,
+		StateNames.ROLLING: RollingState,
+		StateNames.WIN_ROUND: WinRoundState,
+		StateNames.LOSE_ROUND: LoseRoundState
 	}
 
 func get_state(state_name):

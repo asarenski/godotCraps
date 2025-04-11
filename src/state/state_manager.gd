@@ -8,14 +8,15 @@ var hud: Node
 
 func _ready():
 	state_factory = StateFactory.new()
-	change_state(StateFactory.StateNames.BETTING)
+	change_state(StateFactory.StateNames.COMEOUT_BETTING)
 
 func set_hud(hud_node: Node):
 	hud = hud_node
 
 func change_state(new_state_name: StateFactory.StateNames):
-	if state != null:
-		state.queue_free()
+	var previous_state = state
+	if previous_state != null:
+		previous_state.queue_free()
 	state = state_factory.get_state(new_state_name).new()
-	state.setup(Callable(self, 'change_state'), self, hud)
+	state.setup(Callable(self, 'change_state'), previous_state, hud)
 	add_child(state)
