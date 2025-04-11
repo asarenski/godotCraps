@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnb5a5dss37ra"]
+
+[ext_resource type="Script" uid="uid://c6cje24jcoh3k" path="res://src/scenes/main.gd" id="1_32aa5"]
+[ext_resource type="Script" uid="uid://de8j43oipll30" path="res://src/scenes/start.gd" id="2_5dlwx"]
+[ext_resource type="Script" uid="uid://cldhvrrwohw24" path="res://src/scenes/hud.gd" id="3_o81g6"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_32aa5")
+
+[node name="Start" type="CanvasLayer" parent="."]
+script = ExtResource("2_5dlwx")
+
+[node name="Message" type="Label" parent="Start"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -33.0
+offset_right = 240.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Get rollin"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StartButton" type="Button" parent="Start"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -140.0
+offset_right = 98.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Start"
+metadata/_edit_use_anchors_ = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("3_o81g6")
+
+[node name="Bankroll" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Bank: $1000"
+
+[node name="Phase" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 28.0
+offset_right = 64.0
+offset_bottom = 51.0
+grow_horizontal = 2
+text = "Phase: comeout"
