@@ -13,5 +13,8 @@ Godot craps is a game built using the Godot game engine.
 - A Godot project consists of scenes `.tscn` and scripts `.gd`
 - Scripts are written using GDScript, see https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html
 
+## Other Godot Example projects
+- https://github.com/godotengine/godot-demo-projects
+
 ## Example game implementation
 [example-game-implementation.mdc](mdc:.cursor/example-game-implementation.mdc)
