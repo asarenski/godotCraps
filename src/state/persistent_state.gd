@@ -12,7 +12,6 @@ func _ready():
 
 func set_hud(hud_node: Node):
 	hud = hud_node
-	print(state)
 
 func change_state(new_state_name: StateFactory.StateNames):
 	if state != null:
