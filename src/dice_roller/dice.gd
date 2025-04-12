@@ -25,7 +25,7 @@ var rolling := false
 var roll_time := 0.0
 
 ## Emited when a roll finishes
-signal roll_finished(int)
+signal roll_complete(int)
 
 func _init():
 	continuous_cd = false
@@ -52,7 +52,6 @@ func _ready():
 	stop()
 
 func stop():
-	dehighlight()
 	freeze = true
 	sleeping = true
 	position = original_position
@@ -61,24 +60,6 @@ func stop():
 	#lock_rotation = true # TODO: should not be set?
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
-
-func roll():
-	"""Roll the dice"""
-	if position.y < dice_size*2: stop()
-	dehighlight()
-	linear_velocity = Vector3(-dice_size, 0, -dice_size)
-	angular_velocity = Vector3.ZERO
-	freeze = false
-	sleeping = false
-	lock_rotation = false
-	roll_time = 0
-	rolling = true
-	apply_torque_impulse( mass * TAU * Vector3(
-		randf_range(-1.,+1.), 0, randf_range(-1.,+1.)
-	))
-	apply_impulse( mass * Vector3(
-		randf_range(-1.,+1.), 0, randf_range(-1.,+1.)
-	))
 
 func upper_side():
 	"Returns which dice side is up, or 0 when none is clear"
@@ -111,7 +92,6 @@ func face_up_transform(value) -> Transform3D:
 func show_face(value):
 	"""Shows a given face by rotating it up"""
 	assert(value in sides)
-	dehighlight()
 	rolling = true
 	const show_face_animation_time := .3
 	var rotated := face_up_transform(value)
@@ -120,18 +100,5 @@ func show_face(value):
 	)
 	await tween.finished
 	rolling = false
-	highlight()
-	roll_finished.emit(value)
-
-func highlight():
-	var side = upper_side()
-	var side_orientation: Vector3 = sides[side].normalized()
-	var perpendicular_side = side-1 if side-1 else len(sides)
-	var perpendicular_direction = to_global(highlight_orientation[side]) - to_global(Vector3.ZERO)
-	highlight_face.look_at(to_global(sides[side]), perpendicular_direction)
-	prints("side", side, "perpendicular", perpendicular_side)
-	highlight_face.visible = true
-
-func dehighlight():
-	highlight_face.visible = false
+	roll_complete.emit(value)
 	

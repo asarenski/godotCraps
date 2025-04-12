@@ -26,7 +26,8 @@ var rolling := false
 		if rolling:
 			await roll_complete
 		dice_set = new_value
-		setup_dice()
+		if not dice_set.is_empty():
+			setup_dice()
 		
 var total_value:=0 :
 	get:
@@ -36,28 +37,26 @@ var total_value:=0 :
 		return total
 	
 func setup_dice():
-	if not dice_set:
-		dice_set = []
+	if dice_set.is_empty():
 		for die_name in default_set:
 			var die = DiceDef.new()
 			die.name = die_name
-			die.color = default_set[name].color
+			die.color = default_set[die_name].color
 			dice_set.append(die)
+			add_die_to_scene(die)
 
-func add_dice_to_scene(dice: DiceDef):
+func add_die_to_scene(die: DiceDef):
 	var packed_scene = DiceScenes[6]
 	var scene = packed_scene.instantiate()
-	scene.name = dice.name
-	scene.dice_color = dice.color
-	scene.roll_complete.connect(_on_roll_complete.bind(dice.name))
+	scene.name = die.name
+	scene.dice_color = die.color
+	scene.roll_complete.connect(_on_roll_complete.bind(die.name))
 	add_child(scene)
 	dices.append(scene)
 	
 func _on_roll_complete(number: int, dice_name: String):
-	## One dice communicates has finished its rolling
 	result[dice_name] = number
 	if result.size() < dices.size():
-		# Not all dices finished
 		return
 	rolling = false
 	roll_complete.emit(total_value)
