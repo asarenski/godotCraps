@@ -17,7 +17,7 @@ const default_set := {
 	},
 }
 
-var dices := []
+var dice := []
 var result := {}
 var rolling := false
 
@@ -49,14 +49,14 @@ func add_die_to_scene(die: DiceDef):
 	var packed_scene = DiceScenes[6]
 	var scene = packed_scene.instantiate()
 	scene.name = die.name
-	scene.dice_color = die.color
+	scene.die_color = die.color
 	scene.roll_complete.connect(_on_roll_complete.bind(die.name))
 	add_child(scene)
-	dices.append(scene)
+	dice.append(scene)
 	
 func _on_roll_complete(number: int, dice_name: String):
 	result[dice_name] = number
-	if result.size() < dices.size():
+	if result.size() < dice.size():
 		return
 	rolling = false
 	roll_complete.emit(total_value)
@@ -64,9 +64,9 @@ func _on_roll_complete(number: int, dice_name: String):
 func quick_roll():
 	"""Non-physics random values"""
 	var values: Array[int] = []
-	for dice: Dice in dices:
-		var dice_values := dice.sides.keys()
-		var chosen = dice_values[randi_range(0, dice_values.size()-1)]
+	for die: Dice in dice:
+		var sides := die.sides.keys()
+		var chosen = sides[randi_range(0, sides.size()-1)]
 		values.append(chosen)
 	show_faces(values)
 	roll_start.emit()
@@ -74,8 +74,8 @@ func quick_roll():
 func show_faces(faces: Array[int]):
 	"""Shows faces by rotating them up"""
 	if rolling: return
-	assert(faces.size() == dices.size())
+	assert(faces.size() == dice.size())
 	result={}
 	rolling = true
 	for i in range(faces.size()):
-		dices[i].show_face(faces[i])
+		dice[i].show_face(faces[i])

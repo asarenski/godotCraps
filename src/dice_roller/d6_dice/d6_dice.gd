@@ -22,6 +22,4 @@ func _init():
 	super()
 
 func _ready():
-	#$DiceMesh.mesh.size = dice_size * Vector3.ONE
-	#collider.shape.size = dice_size * Vector3.ONE
 	super()
