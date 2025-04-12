@@ -17,12 +17,13 @@ func _ready():
 	# Sibling Connections
 	dice_roller = $"../DiceRoller"
 	dice_roller.roll_complete.connect(_on_roll_complete)
+	$"../Start".start_game.connect(_on_start_game)
 	
 	# hide stuff
 	$DiceResult.hide()
 	$RoundResult.text = ""
 
-func on_start_game():
+func _on_start_game():
 	show()
 
 func update_bankroll(bankroll):

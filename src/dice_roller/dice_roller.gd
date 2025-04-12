@@ -30,7 +30,7 @@ var total_value:=0 :
 			total += result[dice_name]
 		return total
 	
-func setup_dice():
+func _ready():
 	if dice_set.is_empty():
 		for die_name in default_set:
 			var die = DiceDef.new()
