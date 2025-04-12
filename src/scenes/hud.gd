@@ -59,10 +59,12 @@ func _on_clear_bet_pressed():
 	bet_cleared.emit()
 
 func _on_roll_pressed():
+	$RollButton.set_disabled(true)
 	roll_requested.emit()
 	dice_roller.quick_roll()
 
 func _on_roll_complete(value: int):
+	$RollButton.set_disabled(false)
 	$DiceResult.show()
 	var dice_values = dice_roller.result.values()
 	update_dice_result(dice_values[0], dice_values[1])
