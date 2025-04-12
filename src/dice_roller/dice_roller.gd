@@ -21,13 +21,7 @@ var dice := []
 var result := {}
 var rolling := false
 
-@export var dice_set: Array[DiceDef] = []:
-	set(new_value):
-		if rolling:
-			await roll_complete
-		dice_set = new_value
-		if not dice_set.is_empty():
-			setup_dice()
+@export var dice_set: Array[DiceDef] = []
 		
 var total_value:=0 :
 	get:
