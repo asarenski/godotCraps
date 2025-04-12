@@ -4,6 +4,8 @@ signal bet_increased(amount: int)
 signal bet_cleared
 signal roll_requested
 
+var dice_roller: DiceRoller
+
 func _ready():
 	hide()
 	$BetButtons/Bet5.pressed.connect(_on_bet_5_pressed)
@@ -11,6 +13,16 @@ func _ready():
 	$BetButtons/Bet25.pressed.connect(_on_bet_25_pressed)
 	$BetButtons/ClearBet.pressed.connect(_on_clear_bet_pressed)
 	$RollButton.pressed.connect(_on_roll_pressed)
+	
+	# Initialize dice roller
+	dice_roller = DiceRoller.new()
+	add_child(dice_roller)
+	dice_roller.roll_complete.connect(_on_roll_complete)
+	dice_roller.setup_dice()
+	
+	# hide stuff
+	$DiceResult.hide()
+	$RoundResult.text = ""
 
 func on_start_game():
 	show()
@@ -31,16 +43,26 @@ func update_round_result(result_text: String):
 	$RoundResult.text = result_text
 
 func _on_bet_5_pressed():
+	$RollButton.show()
 	bet_increased.emit(5)
 
 func _on_bet_10_pressed():
+	$RollButton.show()
 	bet_increased.emit(10)
 
 func _on_bet_25_pressed():
+	$RollButton.show()
 	bet_increased.emit(25)
 
 func _on_clear_bet_pressed():
+	$RollButton.hide()
 	bet_cleared.emit()
 
 func _on_roll_pressed():
 	roll_requested.emit()
+	dice_roller.quick_roll()
+
+func _on_roll_complete(value: int):
+	$DiceResult.show()
+	var dice_values = dice_roller.result.values()
+	update_dice_result(dice_values[0], dice_values[1])
