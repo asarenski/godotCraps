@@ -14,11 +14,9 @@ func _ready():
 	$BetButtons/ClearBet.pressed.connect(_on_clear_bet_pressed)
 	$RollButton.pressed.connect(_on_roll_pressed)
 	
-	# Initialize dice roller
-	dice_roller = DiceRoller.new()
-	add_child(dice_roller)
+	# Sibling Connections
+	dice_roller = $"../DiceRoller"
 	dice_roller.roll_complete.connect(_on_roll_complete)
-	dice_roller.setup_dice()
 	
 	# hide stuff
 	$DiceResult.hide()

@@ -1,17 +1,14 @@
 extends Node
-
-class_name PersistentState
+class_name StateManager
 
 var state: State
 var state_factory: StateFactory
 var hud: Node
 
 func _ready():
+	hud = $"../HUD"
 	state_factory = StateFactory.new()
 	change_state(StateFactory.StateNames.COMEOUT_BETTING)
-
-func set_hud(hud_node: Node):
-	hud = hud_node
 
 func change_state(new_state_name: StateFactory.StateNames):
 	var previous_state = state
