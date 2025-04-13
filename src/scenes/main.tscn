@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cnb5a5dss37ra"]
+[gd_scene load_steps=7 format=3 uid="uid://cnb5a5dss37ra"]
 
 [ext_resource type="Script" uid="uid://de8j43oipll30" path="res://src/scenes/start.gd" id="2_5dlwx"]
 [ext_resource type="Theme" uid="uid://dy8clll3j6hdj" path="res://src/themes/default_theme.tres" id="2_dbro3"]
@@ -6,24 +6,6 @@
 [ext_resource type="Script" uid="uid://cldhvrrwohw24" path="res://src/scenes/hud.gd" id="3_o81g6"]
 [ext_resource type="Script" uid="uid://cf3y40wpfi08j" path="res://src/dice_roller/dice_roller.gd" id="4_5dlwx"]
 [ext_resource type="Script" uid="uid://gi80v51vaumc" path="res://src/state/state_manager.gd" id="5_o81g6"]
-
-[sub_resource type="Theme" id="Theme_dbro3"]
-
-[sub_resource type="Theme" id="Theme_2lg1k"]
-
-[sub_resource type="Theme" id="Theme_5lsyw"]
-
-[sub_resource type="Theme" id="Theme_kokaf"]
-
-[sub_resource type="Theme" id="Theme_lp058"]
-
-[sub_resource type="Theme" id="Theme_24j03"]
-
-[sub_resource type="Theme" id="Theme_p1ia5"]
-
-[sub_resource type="Theme" id="Theme_kbdt0"]
-
-[sub_resource type="Theme" id="Theme_4rjby"]
 
 [node name="main" type="Node"]
 
@@ -82,25 +64,25 @@ alignment = 1
 
 [node name="Bet5" type="Button" parent="HUD/BetButtons"]
 layout_mode = 2
-theme = SubResource("Theme_dbro3")
+theme = ExtResource("2_dbro3")
 text = "+5"
 flat = true
 
 [node name="Bet10" type="Button" parent="HUD/BetButtons"]
 layout_mode = 2
-theme = SubResource("Theme_2lg1k")
+theme = ExtResource("2_dbro3")
 text = "+10"
 flat = true
 
 [node name="Bet25" type="Button" parent="HUD/BetButtons"]
 layout_mode = 2
-theme = SubResource("Theme_5lsyw")
+theme = ExtResource("2_dbro3")
 text = "+25"
 flat = true
 
 [node name="ClearBet" type="Button" parent="HUD/BetButtons"]
 layout_mode = 2
-theme = SubResource("Theme_kokaf")
+theme = ExtResource("2_dbro3")
 text = "Clear"
 flat = true
 
@@ -134,19 +116,19 @@ vertical = true
 
 [node name="Bankroll" type="Label" parent="HUD/HUDTop"]
 layout_mode = 2
-theme = SubResource("Theme_lp058")
+theme = ExtResource("2_dbro3")
 text = "Bankroll: 0"
 horizontal_alignment = 1
 
 [node name="Bet" type="Label" parent="HUD/HUDTop"]
 layout_mode = 2
-theme = SubResource("Theme_24j03")
+theme = ExtResource("2_dbro3")
 text = "Current Bet: 0"
 horizontal_alignment = 1
 
 [node name="Phase" type="Label" parent="HUD/HUDTop"]
 layout_mode = 2
-theme = SubResource("Theme_p1ia5")
+theme = ExtResource("2_dbro3")
 text = "Phase or Point"
 horizontal_alignment = 1
 
@@ -168,13 +150,13 @@ vertical = true
 
 [node name="DiceResult" type="Label" parent="HUD/Results"]
 layout_mode = 2
-theme = SubResource("Theme_kbdt0")
+theme = ExtResource("2_dbro3")
 text = "Dice Result"
 horizontal_alignment = 1
 
 [node name="RoundResult" type="Label" parent="HUD/Results"]
 layout_mode = 2
-theme = SubResource("Theme_4rjby")
+theme = ExtResource("2_dbro3")
 text = "Round Result"
 horizontal_alignment = 1
 
