@@ -20,7 +20,7 @@ func _ready():
 	$"../Start".start_game.connect(_on_start_game)
 	
 	# hide stuff
-	hideDiceResult()
+	hide_dice_result()
 
 func _on_start_game():
 	show()
@@ -40,16 +40,16 @@ func update_dice_result(dice1: int, dice2: int):
 func update_round_result(result_text: String):
 	$Results/RoundResult.text = result_text
 	
-func showDiceResult():
+func show_dice_result():
 	$Results/DiceResult.show()
 
-func hideDiceResult():
+func hide_dice_result():
 	$Results/DiceResult.hide()
 	
-func showRoundResult():
+func show_round_result():
 	$Results/RoundResult.show()
 	
-func hideRoundResult():
+func hide_round_result():
 	$Results/RoundResult.hide()
 
 func _on_bet_5_pressed():
@@ -77,4 +77,4 @@ func _on_roll_complete(value: int):
 	$RollButton.set_disabled(false)
 	var dice_values = dice_roller.result.values()
 	update_dice_result(dice_values[0], dice_values[1])
-	showDiceResult()
+	show_dice_result()

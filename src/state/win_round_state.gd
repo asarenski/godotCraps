@@ -10,7 +10,7 @@ func setup(change_state: Callable, previous_state: State, hud: Node) -> void:
 	
 	hud.update_bet(bet)
 	hud.update_bankroll(bankroll)
-	hud.update_round_result("You Win: %d" % previous_state.bet)
-	hud.showRoundResult()
+	hud.update_round_result("You Win!")
+	hud.show_round_result()
 	
 	change_state.call(StateFactory.StateNames.COMEOUT_BETTING) 

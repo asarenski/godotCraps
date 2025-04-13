@@ -6,7 +6,7 @@ func setup(change_state: Callable, previous_state: State, hud: Node) -> void:
 	super(change_state, previous_state, hud)
 	game_phase = State.GamePhase.COME_OUT
 	point = null
-	hud.update_phase("Place Your Bets")
+	hud.update_phase("Come Out")
 	hud.get_node("BetButtons").show()
 	hud.get_node("RollButton").hide()
 	hud.bet_increased.connect(_on_bet_increased)
@@ -22,15 +22,15 @@ func _on_bet_increased(amount: int) -> void:
 		update_bet(bet + amount)
 		bankroll -= amount
 		hud.update_bankroll(bankroll)
-		hud.hideDiceResult()
-		hud.hideRoundResult()
+		hud.hide_dice_result()
+		hud.hide_round_result()
 
 func _on_bet_cleared() -> void:
 	bankroll += bet
 	update_bet(0)
 	hud.update_bankroll(bankroll)
-	hud.hideDiceResult()
-	hud.hideRoundResult()
+	hud.hide_dice_result()
+	hud.hide_round_result()
 
 func _on_roll_requested() -> void:
 	if bet > 0:
