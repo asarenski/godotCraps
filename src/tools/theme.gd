@@ -6,7 +6,7 @@ https://github.com/Inspiaaa/ThemeGen
 '''
 
 func setup():
-	set_save_path("res://src/themes/light_theme.tres")
+	set_save_path("res://src/themes/default_theme.tres")
 
 func define_theme():
 	pass
