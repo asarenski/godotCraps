@@ -22,16 +22,15 @@ func _on_bet_increased(amount: int) -> void:
 		update_bet(bet + amount)
 		bankroll -= amount
 		hud.update_bankroll(bankroll)
-		hud.get_node("DiceResult").hide()
-		hud.update_round_result("")
+		hud.hideDiceResult()
+		hud.hideRoundResult()
 
 func _on_bet_cleared() -> void:
 	bankroll += bet
 	update_bet(0)
 	hud.update_bankroll(bankroll)
-	hud.get_node("DiceResult").hide()
-	hud.update_round_result("")
-	hud.get_node("RollButton").hide()
+	hud.hideDiceResult()
+	hud.hideRoundResult()
 
 func _on_roll_requested() -> void:
 	if bet > 0:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnb5a5dss37ra"]
+[gd_scene load_steps=6 format=3 uid="uid://cnb5a5dss37ra"]
 
 [ext_resource type="Script" uid="uid://de8j43oipll30" path="res://src/scenes/start.gd" id="2_5dlwx"]
+[ext_resource type="Texture2D" uid="uid://dplf5v8v5jemv" path="res://src/assets/die.svg" id="3_dbro3"]
 [ext_resource type="Script" uid="uid://cldhvrrwohw24" path="res://src/scenes/hud.gd" id="3_o81g6"]
 [ext_resource type="Script" uid="uid://cf3y40wpfi08j" path="res://src/dice_roller/dice_roller.gd" id="4_5dlwx"]
 [ext_resource type="Script" uid="uid://gi80v51vaumc" path="res://src/state/state_manager.gd" id="5_o81g6"]
@@ -45,36 +46,15 @@ metadata/_edit_use_anchors_ = true
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_o81g6")
 
-[node name="Bankroll" type="Label" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -40.5
-offset_top = 57.0
-offset_right = 42.5
-offset_bottom = 80.0
-grow_horizontal = 2
-text = "Bankroll: 0"
-
-[node name="Bet" type="Label" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -53.0
-offset_top = 96.0
-offset_right = 55.0
-offset_bottom = 119.0
-grow_horizontal = 2
-text = "Current Bet: 0"
-
 [node name="BetButtons" type="HBoxContainer" parent="HUD"]
-anchors_preset = 10
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-offset_left = -1.0
-offset_top = 188.0
-offset_right = -1.0
-offset_bottom = 219.0
+anchor_bottom = 0.5
+offset_top = -160.0
+offset_bottom = -129.0
 grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="Bet5" type="Button" parent="HUD/BetButtons"]
@@ -98,51 +78,69 @@ text = "Clear"
 flat = true
 
 [node name="RollButton" type="Button" parent="HUD"]
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -47.0
-offset_top = 268.0
-offset_right = 53.0
-offset_bottom = 299.0
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -96.0
+offset_right = 98.0
+offset_bottom = 4.0
 grow_horizontal = 2
+grow_vertical = 2
 text = "Roll"
+icon = ExtResource("3_dbro3")
 flat = true
 
-[node name="Phase" type="Label" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -62.0
-offset_top = 134.0
-offset_right = 62.0
-offset_bottom = 157.0
+[node name="HUDTop" type="BoxContainer" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -1.0
+offset_top = 40.0
+offset_right = -1.0
+offset_bottom = 117.0
 grow_horizontal = 2
+alignment = 1
+vertical = true
+
+[node name="Bankroll" type="Label" parent="HUD/HUDTop"]
+layout_mode = 2
+text = "Bankroll: 0"
+horizontal_alignment = 1
+
+[node name="Bet" type="Label" parent="HUD/HUDTop"]
+layout_mode = 2
+text = "Current Bet: 0"
+horizontal_alignment = 1
+
+[node name="Phase" type="Label" parent="HUD/HUDTop"]
+layout_mode = 2
 text = "Phase"
 horizontal_alignment = 1
 
-[node name="DiceResult" type="Label" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -55.0
-offset_top = 343.0
-offset_right = 69.0
-offset_bottom = 366.0
+[node name="Results" type="BoxContainer" parent="HUD"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -320.0
+offset_right = -1.0
+offset_bottom = -270.0
 grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 4
+alignment = 1
+vertical = true
+
+[node name="DiceResult" type="Label" parent="HUD/Results"]
+layout_mode = 2
 text = "Dice Result"
 horizontal_alignment = 1
 
-[node name="RoundResult" type="Label" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -57.0
-offset_top = 377.0
-offset_right = 67.0
-offset_bottom = 400.0
-grow_horizontal = 2
-text = "Round Result"
+[node name="RoundResult" type="Label" parent="HUD/Results"]
+layout_mode = 2
 horizontal_alignment = 1
 
 [node name="DiceRoller" type="Node" parent="."]

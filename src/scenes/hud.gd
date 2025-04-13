@@ -20,26 +20,37 @@ func _ready():
 	$"../Start".start_game.connect(_on_start_game)
 	
 	# hide stuff
-	$DiceResult.hide()
-	$RoundResult.text = ""
+	hideDiceResult()
 
 func _on_start_game():
 	show()
 
 func update_bankroll(bankroll):
-	$Bankroll.text = "Bankroll: %d" % bankroll
+	$HUDTop/Bankroll.text = "Bankroll: %d" % bankroll
 
 func update_bet(bet):
-	$Bet.text = "Current Bet: %d" % bet
+	$HUDTop/Bet.text = "Current Bet: %d" % bet
 
 func update_phase(phase_text: String):
-	$Phase.text = phase_text
+	$HUDTop/Phase.text = phase_text
 
 func update_dice_result(dice1: int, dice2: int):
-	$DiceResult.text = "Dice: %d + %d = %d" % [dice1, dice2, dice1 + dice2]
+	$Results/DiceResult.text = "Dice: %d + %d = %d" % [dice1, dice2, dice1 + dice2]
 
 func update_round_result(result_text: String):
-	$RoundResult.text = result_text
+	$Results/RoundResult.text = result_text
+	
+func showDiceResult():
+	$Results/DiceResult.show()
+
+func hideDiceResult():
+	$Results/DiceResult.hide()
+	
+func showRoundResult():
+	$Results/RoundResult.show()
+	
+func hideRoundResult():
+	$Results/RoundResult.hide()
 
 func _on_bet_5_pressed():
 	$RollButton.show()
@@ -64,6 +75,6 @@ func _on_roll_pressed():
 
 func _on_roll_complete(value: int):
 	$RollButton.set_disabled(false)
-	$DiceResult.show()
 	var dice_values = dice_roller.result.values()
 	update_dice_result(dice_values[0], dice_values[1])
+	showDiceResult()
