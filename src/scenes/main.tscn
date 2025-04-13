@@ -116,7 +116,7 @@ horizontal_alignment = 1
 
 [node name="Phase" type="Label" parent="HUD/HUDTop"]
 layout_mode = 2
-text = "Phase"
+text = "Phase or Point"
 horizontal_alignment = 1
 
 [node name="Results" type="BoxContainer" parent="HUD"]
@@ -141,6 +141,7 @@ horizontal_alignment = 1
 
 [node name="RoundResult" type="Label" parent="HUD/Results"]
 layout_mode = 2
+text = "Round Result"
 horizontal_alignment = 1
 
 [node name="DiceRoller" type="Node" parent="."]
