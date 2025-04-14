@@ -12,7 +12,6 @@ func _ready():
 	$BetButtons/Bet10.pressed.connect(_on_bet_10_pressed)
 	$BetButtons/Bet25.pressed.connect(_on_bet_25_pressed)
 	$BetButtons/ClearBet.pressed.connect(_on_clear_bet_pressed)
-	$RollButton.pressed.connect(_on_roll_pressed)
 	
 	# Sibling Connections
 	dice_roller = $"../DiceRoller"
@@ -68,7 +67,7 @@ func _on_clear_bet_pressed():
 	$RollButton.hide()
 	bet_cleared.emit()
 
-func _on_roll_pressed():
+func _on_roll_button_pressed():
 	$RollButton.set_disabled(true)
 	roll_requested.emit()
 	dice_roller.quick_roll()

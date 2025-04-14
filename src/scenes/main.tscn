@@ -169,3 +169,4 @@ script = ExtResource("5_o81g6")
 metadata/_custom_type_script = "uid://gi80v51vaumc"
 
 [connection signal="pressed" from="Start/StartButton" to="Start" method="_on_start_button_pressed"]
+[connection signal="pressed" from="HUD/RollButton" to="HUD" method="_on_roll_button_pressed"]
