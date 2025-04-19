@@ -10,6 +10,7 @@
 [node name="main" type="Node"]
 
 [node name="Start" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("2_5dlwx")
 
 [node name="Message" type="Label" parent="Start"]
@@ -99,6 +100,7 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_dbro3")
+theme_override_font_sizes/font_size = 36
 text = "Roll"
 icon = ExtResource("3_dbro3")
 

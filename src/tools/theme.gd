@@ -29,5 +29,9 @@ func define_theme():
 	define_style("Button", {
 		normal = button_style,
 		hover = button_hover_style,
-		pressed = button_pressed_style
+		pressed = button_pressed_style,
+	})
+	
+	define_style("Label", {
+		font_size = 20
 	})

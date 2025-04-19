@@ -13,3 +13,4 @@ bg_color = Color(0, 0.451765, 0.451765, 1)
 Button/styles/hover = SubResource("StyleBoxFlat_lq8tu")
 Button/styles/normal = SubResource("StyleBoxFlat_u5agi")
 Button/styles/pressed = SubResource("StyleBoxFlat_7n8gp")
+Label/font_sizes/font_size = 20
