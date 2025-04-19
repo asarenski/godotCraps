@@ -20,6 +20,7 @@ func _ready():
 	
 	# hide stuff
 	hide_dice_result()
+	hide_round_result()
 
 func _on_start_game():
 	show()
