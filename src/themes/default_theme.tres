@@ -2,12 +2,37 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lq8tu"]
 bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 2.0
+expand_margin_right = 4.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5agi"]
 bg_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 2.0
+expand_margin_right = 4.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7n8gp"]
 bg_color = Color(0.1, 0.1, 0.1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_top = 2.0
+expand_margin_right = 4.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjlkq"]
 bg_color = Color(0, 0.476863, 0.476863, 1)
@@ -19,11 +44,12 @@ bg_color = Color(0, 0.501961, 0.501961, 1)
 bg_color = Color(0, 0.451765, 0.451765, 1)
 
 [resource]
+default_font_size = 20
 BetButton/base_type = &"Button"
+BetButton/colors/font_pressed_color = Color(1, 1, 0.0431373, 1)
 BetButton/styles/hover = SubResource("StyleBoxFlat_lq8tu")
 BetButton/styles/normal = SubResource("StyleBoxFlat_u5agi")
 BetButton/styles/pressed = SubResource("StyleBoxFlat_7n8gp")
 Button/styles/hover = SubResource("StyleBoxFlat_jjlkq")
 Button/styles/normal = SubResource("StyleBoxFlat_oyjfr")
 Button/styles/pressed = SubResource("StyleBoxFlat_p0cuc")
-Label/font_sizes/font_size = 20
