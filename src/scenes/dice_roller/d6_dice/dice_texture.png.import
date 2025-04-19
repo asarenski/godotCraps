@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ch6otp30d2hoj"
-path.s3tc="res://.godot/imported/dice_texture.png-1a052825e601cae10d697b711ef2b3bb.s3tc.ctex"
-path.etc2="res://.godot/imported/dice_texture.png-1a052825e601cae10d697b711ef2b3bb.etc2.ctex"
+path.s3tc="res://.godot/imported/dice_texture.png-e45a91f9e989565d1f90192c58cc284d.s3tc.ctex"
+path.etc2="res://.godot/imported/dice_texture.png-e45a91f9e989565d1f90192c58cc284d.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://src/dice_roller/d6_dice/dice_texture.png"
-dest_files=["res://.godot/imported/dice_texture.png-1a052825e601cae10d697b711ef2b3bb.s3tc.ctex", "res://.godot/imported/dice_texture.png-1a052825e601cae10d697b711ef2b3bb.etc2.ctex"]
+source_file="res://src/scenes/dice_roller/d6_dice/dice_texture.png"
+dest_files=["res://.godot/imported/dice_texture.png-e45a91f9e989565d1f90192c58cc284d.s3tc.ctex", "res://.godot/imported/dice_texture.png-e45a91f9e989565d1f90192c58cc284d.etc2.ctex"]
 
 [params]
 

@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://do3xsddtldsbe"
-path.s3tc="res://.godot/imported/dice_normal_map.png-9ce979cb469fe6d4e35e749e7ea10240.s3tc.ctex"
-path.etc2="res://.godot/imported/dice_normal_map.png-9ce979cb469fe6d4e35e749e7ea10240.etc2.ctex"
+path.s3tc="res://.godot/imported/dice_normal_map.png-7d5e9d74411ba6c2529c102b8732049c.s3tc.ctex"
+path.etc2="res://.godot/imported/dice_normal_map.png-7d5e9d74411ba6c2529c102b8732049c.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://src/dice_roller/d6_dice/dice_normal_map.png"
-dest_files=["res://.godot/imported/dice_normal_map.png-9ce979cb469fe6d4e35e749e7ea10240.s3tc.ctex", "res://.godot/imported/dice_normal_map.png-9ce979cb469fe6d4e35e749e7ea10240.etc2.ctex"]
+source_file="res://src/scenes/dice_roller/d6_dice/dice_normal_map.png"
+dest_files=["res://.godot/imported/dice_normal_map.png-7d5e9d74411ba6c2529c102b8732049c.s3tc.ctex", "res://.godot/imported/dice_normal_map.png-7d5e9d74411ba6c2529c102b8732049c.etc2.ctex"]
 
 [params]
 
