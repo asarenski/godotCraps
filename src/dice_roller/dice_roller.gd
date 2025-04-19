@@ -10,10 +10,12 @@ signal roll_start()
 
 const default_set := {
 	'red': {
-		'color': Color.FIREBRICK,
+		'color': Color.DARK_ORANGE,
+		'position': Vector3(-0.28, 0, 0)
 	},
 	'yellow': {
-		'color': Color.GOLDENROD,
+		'color': Color.DARK_ORANGE,
+		'position': Vector3(0.28, 0, 0)
 	},
 }
 
@@ -45,6 +47,7 @@ func add_die_to_scene(die: DiceDef):
 	scene.name = die.name
 	scene.die_color = die.color
 	scene.roll_complete.connect(_on_roll_complete.bind(die.name))
+	scene.position = default_set[die.name].position
 	add_child(scene)
 	dice.append(scene)
 	

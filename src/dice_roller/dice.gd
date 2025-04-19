@@ -2,10 +2,8 @@ class_name Dice
 extends RigidBody3D
 
 @export var die_color := Color.BROWN
-@onready var original_position := position
 
 var sides = {}
-var highlight_orientation = {}
 
 const dice_size := 2.0
 const dice_density := 10.0
@@ -22,27 +20,17 @@ func _init():
 	gravity_scale = 10
 	freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
 
-@onready var collider : CollisionShape3D = $Collider
-@onready var highlight_face : Node3D = $FaceHighligth
 @onready var mesh = $DiceMesh
 
-func _adjust_to_size():
-	mass = dice_density * dice_size**3
-	collider.shape.margin = dice_size * 0.1
-
 func _ready():
-	original_position = position
 	mesh.material_override = mesh.material_override.duplicate()
 	mesh.material_override.albedo_color = die_color
-	_adjust_to_size()
+	mass = dice_density * dice_size**3
 	stop()
 
 func stop():
 	freeze = true
 	sleeping = true
-	position = original_position
-	position.y = 5 * dice_size
-	rotation = randf_range(0, 2*PI)*Vector3(1.,1.,1.)
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
 
