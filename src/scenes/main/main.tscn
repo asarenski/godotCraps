@@ -10,7 +10,6 @@
 [node name="main" type="Node"]
 
 [node name="Start" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("2_5dlwx")
 
 [node name="Message" type="Label" parent="Start"]
@@ -61,31 +60,32 @@ offset_bottom = -129.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_dbro3")
+theme_override_constants/separation = 23
 alignment = 1
 
 [node name="Bet5" type="Button" parent="HUD/BetButtons"]
 layout_mode = 2
 theme = ExtResource("2_dbro3")
+theme_type_variation = &"BetButton"
 text = "+5"
-flat = true
 
 [node name="Bet10" type="Button" parent="HUD/BetButtons"]
 layout_mode = 2
 theme = ExtResource("2_dbro3")
+theme_type_variation = &"BetButton"
 text = "+10"
-flat = true
 
 [node name="Bet25" type="Button" parent="HUD/BetButtons"]
 layout_mode = 2
 theme = ExtResource("2_dbro3")
+theme_type_variation = &"BetButton"
 text = "+25"
-flat = true
 
 [node name="ClearBet" type="Button" parent="HUD/BetButtons"]
 layout_mode = 2
 theme = ExtResource("2_dbro3")
+theme_type_variation = &"BetButton"
 text = "Clear"
-flat = true
 
 [node name="RollButton" type="Button" parent="HUD"]
 anchors_preset = 8
