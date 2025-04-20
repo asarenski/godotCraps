@@ -8,7 +8,7 @@ func setup(change_state: Callable, previous_state: State, hud: Node) -> void:
 	bankroll += bet * 2
 	bet = 0
 	
-	hud.update_bet(bet)
+	update_bet(bet)
 	hud.update_bankroll(bankroll)
 	hud.update_round_result("You Win!")
 	hud.show_round_result()
