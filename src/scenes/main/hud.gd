@@ -25,10 +25,28 @@ func _ready():
 func _on_start_game():
 	show()
 
+func _on_timer_timeout() -> void:
+	$HUDTop/Bet.remove_theme_color_override("font_color")
+
 func update_bankroll(bankroll):
 	$HUDTop/Bankroll.text = "Bankroll: %d" % bankroll
 
-func update_bet(bet):
+func _flash_bet_color(color: Color):
+	$HUDTop/Timer.start()
+	$HUDTop/Bet.add_theme_color_override("font_color", color)
+	
+func _flash_bet_increase():
+	_flash_bet_color(Color.MEDIUM_SEA_GREEN)
+	
+func _flash_bet_decrease():
+	_flash_bet_color(Color.ORANGE_RED)
+
+func update_bet(bet: int, type: String):
+	if type == "increase":
+		_flash_bet_increase()
+	else:
+		_flash_bet_decrease()
+	
 	$HUDTop/Bet.text = "Current Bet: %d" % bet
 
 func update_phase(phase_text: String):

@@ -43,5 +43,6 @@ func setup(change_state: Callable, previous_state: State, hud: Node):
 		bet = 0
 
 func update_bet(new_bet: int):
+	var bet_type = "increase" if new_bet > bet else "decrease"
 	bet = new_bet
-	hud.update_bet(bet)
+	hud.update_bet(bet, bet_type)

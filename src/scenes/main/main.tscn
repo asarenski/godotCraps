@@ -9,7 +9,6 @@
 [node name="main" type="Node"]
 
 [node name="Start" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("2_5dlwx")
 
 [node name="Message" type="Label" parent="Start"]
@@ -133,6 +132,9 @@ theme = ExtResource("2_dbro3")
 text = "Phase or Point"
 horizontal_alignment = 1
 
+[node name="Timer" type="Timer" parent="HUD/HUDTop"]
+wait_time = 0.25
+
 [node name="Results" type="BoxContainer" parent="HUD"]
 anchors_preset = 12
 anchor_top = 1.0
@@ -195,3 +197,4 @@ metadata/_custom_type_script = "uid://gi80v51vaumc"
 
 [connection signal="pressed" from="Start/StartButton" to="Start" method="_on_start_button_pressed"]
 [connection signal="pressed" from="HUD/RollButton" to="HUD" method="_on_roll_button_pressed"]
+[connection signal="timeout" from="HUD/HUDTop/Timer" to="HUD" method="_on_timer_timeout"]
