@@ -49,8 +49,14 @@ func update_bet(bet: int, type: String):
 	
 	$HUDTop/Bet.text = "Current Bet: %d" % bet
 
-func update_phase(phase_text: String):
+func update_phase(phase_text: String, type: String):
 	$HUDTop/Phase.text = phase_text
+	if type == "point":
+		$HUDTop/Phase.add_theme_color_override("font_color", Color.GOLD)
+	elif type == "game_over":
+		$HUDTop/Phase.add_theme_color_override("font_color", Color.ORANGE_RED)
+	else:
+		$HUDTop/Phase.remove_theme_color_override("font_color")
 
 func update_dice_result(dice1: int, dice2: int):
 	$Results/DiceResult.text = "Dice: %d + %d = %d" % [dice1, dice2, dice1 + dice2]
