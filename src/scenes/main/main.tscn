@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnb5a5dss37ra"]
+[gd_scene load_steps=6 format=3 uid="uid://cnb5a5dss37ra"]
 
 [ext_resource type="Script" uid="uid://de8j43oipll30" path="res://src/scenes/main/start.gd" id="2_5dlwx"]
 [ext_resource type="Theme" uid="uid://dy8clll3j6hdj" path="res://src/themes/default_theme.tres" id="2_dbro3"]
-[ext_resource type="Texture2D" uid="uid://dplf5v8v5jemv" path="res://src/assets/die.svg" id="3_dbro3"]
 [ext_resource type="Script" uid="uid://cldhvrrwohw24" path="res://src/scenes/main/hud.gd" id="3_o81g6"]
 [ext_resource type="Script" uid="uid://cf3y40wpfi08j" path="res://src/scenes/dice_roller/dice_roller.gd" id="4_5dlwx"]
 [ext_resource type="Script" uid="uid://gi80v51vaumc" path="res://src/state/state_manager.gd" id="5_o81g6"]
@@ -10,6 +9,7 @@
 [node name="main" type="Node"]
 
 [node name="Start" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("2_5dlwx")
 
 [node name="Message" type="Label" parent="Start"]
@@ -93,16 +93,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -102.0
-offset_top = -96.0
-offset_right = 98.0
-offset_bottom = 4.0
+offset_left = -70.0
+offset_top = -60.0
+offset_right = 70.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_dbro3")
 theme_override_font_sizes/font_size = 36
 text = "Roll"
-icon = ExtResource("3_dbro3")
 
 [node name="HUDTop" type="BoxContainer" parent="HUD"]
 anchors_preset = 10
