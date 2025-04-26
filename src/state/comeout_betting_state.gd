@@ -6,6 +6,7 @@ func setup(change_state: Callable, previous_state: State, hud: Node) -> void:
 	super(change_state, previous_state, hud)
 	game_phase = State.GamePhase.COME_OUT
 	point = null
+	hud.update_bankroll(bankroll)
 	hud.update_phase("Come Out", "comeout")
 	hud.get_node("BetButtons").show()
 	hud.get_node("RollButton").hide()
