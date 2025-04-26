@@ -1,0 +1,22 @@
+{
+  "name": "godotcraps",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asarenski/godotCraps.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/asarenski/godotCraps/issues"
+  },
+  "homepage": "https://github.com/asarenski/godotCraps",
+  "description": "",
+  "scripts": {
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
