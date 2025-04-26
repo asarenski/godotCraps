@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/asarenski/godotCraps/issues"
   },
-  "homepage": "https://github.com/asarenski/godotCraps",
+  "homepage": "https://asarenski.github.io/godotCraps",
   "description": "",
   "scripts": {
     "deploy": "gh-pages -d build"
