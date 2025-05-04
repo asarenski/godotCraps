@@ -8,8 +8,7 @@ enum StateNames {
 	COMEOUT_BETTING,
 	POINT,
 	ROLLING,
-	WIN_ROUND,
-	LOSE_ROUND
+	END_ROUND
 }
 
 func _init():
@@ -17,8 +16,7 @@ func _init():
 		StateNames.COMEOUT_BETTING: ComeOutBettingState,
 		StateNames.POINT: PointState,
 		StateNames.ROLLING: RollingState,
-		StateNames.WIN_ROUND: WinRoundState,
-		StateNames.LOSE_ROUND: LoseRoundState
+		StateNames.END_ROUND: EndRoundState
 	}
 
 func get_state(state_name):

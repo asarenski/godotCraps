@@ -24,7 +24,7 @@ var change_state: Callable
 var previous_state: State
 var hud: Node
 
-func setup(change_state: Callable, previous_state: State, hud: Node):
+func setup(change_state: Callable, previous_state: State, hud: Node, _params = null):
 	self.change_state = change_state
 	self.previous_state = previous_state
 	self.hud = hud

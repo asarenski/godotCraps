@@ -2,8 +2,8 @@ extends State
 
 class_name ComeOutBettingState
 
-func setup(change_state: Callable, previous_state: State, hud: Node) -> void:
-	super(change_state, previous_state, hud)
+func setup(change_state: Callable, previous_state: State, hud: Node, _params = null) -> void:
+	super(change_state, previous_state, hud, _params)
 	game_phase = State.GamePhase.COME_OUT
 	point = null
 	hud.update_bankroll(bankroll)
