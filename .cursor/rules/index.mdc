@@ -5,9 +5,7 @@ alwaysApply: true
 ---
 # Godot Craps
 Godot craps is a game built using the Godot game engine.
-
-## Cursor Rules
-- When creating cursor rules put them in `.cursor/rules/`
+* see: https://docs.godotengine.org/
 
 ## Godot Project
 - A Godot project consists of scenes `.tscn` and scripts `.gd`
@@ -15,6 +13,3 @@ Godot craps is a game built using the Godot game engine.
 
 ## Other Godot Example projects
 - https://github.com/godotengine/godot-demo-projects
-
-## Example game implementation
-[example-game-implementation.mdc](mdc:.cursor/example-game-implementation.mdc)
