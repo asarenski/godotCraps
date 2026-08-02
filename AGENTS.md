@@ -1,6 +1,8 @@
 # godotCraps Agent Guide
 
-A Godot 4.4 craps dice game. GDScript only, GL Compatibility renderer, web-export target.
+A Godot 4.7 craps dice game. GDScript only, GL Compatibility renderer, web-export target.
+
+For Godot API/docs lookups, use Context7: `/godotengine/godot-docs` (source), `/websites/godotengine_en_4_7` (highest snippet count).
 
 ## Commands
 
