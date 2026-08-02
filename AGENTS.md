@@ -4,6 +4,12 @@ A Godot 4.7 craps dice game. GDScript only, GL Compatibility renderer, web-expor
 
 For Godot API/docs lookups, use Context7: `/godotengine/godot-docs` (source), `/websites/godotengine_en_4_7` (highest snippet count).
 
+## Design Docs
+
+Game design, architecture plans, and coding plans live in `/docs/`. Start with:
+
+- `docs/vision.md` — game concept, terminology, core loop, dice throw system, deckbuilding
+
 ## Commands
 
 ```sh
