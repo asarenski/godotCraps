@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dy8clll3j6hdj"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dy8clll3j6hdj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lq8tu"]
 bg_color = Color(0, 0, 0, 1)
@@ -54,6 +54,13 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_disabled"]
+bg_color = Color(0.3, 0.3, 0.3, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="SystemFont" id="SystemFont_lq8tu"]
 font_names = PackedStringArray("Futura")
 
@@ -68,3 +75,5 @@ WagerButton/styles/pressed = SubResource("StyleBoxFlat_7n8gp")
 Button/styles/hover = SubResource("StyleBoxFlat_jjlkq")
 Button/styles/normal = SubResource("StyleBoxFlat_oyjfr")
 Button/styles/pressed = SubResource("StyleBoxFlat_p0cuc")
+Button/styles/disabled = SubResource("StyleBoxFlat_disabled")
+Button/colors/font_disabled_color = Color(0.65, 0.65, 0.65, 1)
