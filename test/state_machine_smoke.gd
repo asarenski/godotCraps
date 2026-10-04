@@ -98,6 +98,16 @@ func _run():
 	_expect(failures, g4.bankroll.balance == 95 and g4.bankroll.wager == 0, "seven-out lose → 95/0")
 	_expect(failures, g4.view.result_log.back() == "You Lose!", "seven-out result shown")
 
+	var g5 = _new_game()
+	g5.view.press_wager(5)
+	g5.dice.next_values = [3, 4]
+	g5.view.press_roll()
+	_expect(failures, g5.view.result_log.back() == "You Win!", "win shown before re-roll")
+	var clear_before: int = g5.view.clear_count
+	g5.dice.next_values = [3, 3]
+	g5.view.press_roll()
+	_expect(failures, g5.view.clear_count > clear_before, "rolling after win clears results")
+
 	if failures.is_empty():
 		print("PASS: state machine smoke test")
 		quit(0)
