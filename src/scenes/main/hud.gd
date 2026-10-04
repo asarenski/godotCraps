@@ -69,11 +69,11 @@ func clear_results():
 func _set_reserved_visible(control: Control, shown: bool) -> void:
 	control.modulate.a = 1.0 if shown else 0.0
 	if control is BaseButton:
-		control.disabled = not shown
+		control.mouse_filter = Control.MOUSE_FILTER_STOP if shown else Control.MOUSE_FILTER_IGNORE
 	else:
 		for child in control.get_children():
 			if child is BaseButton:
-				child.disabled = not shown
+				child.mouse_filter = Control.MOUSE_FILTER_STOP if shown else Control.MOUSE_FILTER_IGNORE
 
 func _flash_wager_color(color: Color):
 	$Action/Timer.start()
