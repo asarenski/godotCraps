@@ -16,7 +16,15 @@ Game design, architecture plans, and coding plans live in `/docs/`. Start with:
 npm run deploy   # publish build/ to GitHub Pages via gh-pages
 ```
 
-No tests, lint, or CI exist.
+Tests are headless `SceneTree` scripts in `test/` (no framework):
+
+```sh
+godot --headless --path . --script res://test/<file>.gd   # run one smoke test
+godot --headless --path . --quit-after 5                   # load the project, catch parse errors
+godot --headless --path . --editor --quit                  # rescan: refresh class_name cache + .uid files
+```
+
+No lint or CI. On macOS the `godot` binary may live at `/Applications/Godot.app/Contents/MacOS/Godot` rather than on `PATH`.
 
 ## Architecture
 
