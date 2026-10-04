@@ -101,12 +101,12 @@ func _on_clear_wager_pressed():
 	wager_cleared.emit()
 
 func _on_roll_start():
-	$Action/RollButton.set_disabled(true)
+	$Action/RollButton.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _on_roll_button_pressed():
 	roll_requested.emit()
 
 func _on_roll_complete(_total: int, values: Array):
-	$Action/RollButton.set_disabled(false)
+	$Action/RollButton.mouse_filter = Control.MOUSE_FILTER_STOP
 	update_dice_result(values[0], values[1])
 	$Readout/Results/DiceResult.show()
