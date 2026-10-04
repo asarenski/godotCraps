@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TimingConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/config/timing.gd" id="1_timing"]
+
+[resource]
+script = ExtResource("1_timing")
+delta_count_duration = 0.3
+delta_hold_duration = 0.4
+delta_fade_duration = 0.3
