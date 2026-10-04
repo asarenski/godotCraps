@@ -5,7 +5,8 @@ signal wager_cleared
 signal roll_requested
 
 var dice_roller: DiceRoller
-var _last_wager: int = 0
+var _last_balance: int = -1
+var _last_wager: int = -1
 
 func _ready():
 	hide()
@@ -27,6 +28,7 @@ func _on_start_game():
 	show()
 
 func _on_timer_timeout() -> void:
+	$Status/Bankroll.remove_theme_color_override("font_color")
 	$Action/Wager.remove_theme_color_override("font_color")
 
 # --- View interface ---
@@ -34,10 +36,17 @@ func _on_timer_timeout() -> void:
 func show_money(balance: int, wager: int):
 	$Status/Bankroll.text = "Bankroll: %d" % balance
 	$Action/Wager.text = "Wager: %d" % wager
-	if wager > _last_wager:
-		_flash_wager_increase()
-	elif wager < _last_wager:
-		_flash_wager_decrease()
+	if _last_balance >= 0:
+		if balance > _last_balance:
+			_flash_label($Status/Bankroll, Color.MEDIUM_SEA_GREEN)
+		elif balance < _last_balance:
+			_flash_label($Status/Bankroll, Color.ORANGE_RED)
+	if _last_wager >= 0:
+		if wager > _last_wager:
+			_flash_label($Action/Wager, Color.MEDIUM_SEA_GREEN)
+		elif wager < _last_wager:
+			_flash_label($Action/Wager, Color.ORANGE_RED)
+	_last_balance = balance
 	_last_wager = wager
 	_set_reserved_visible($Action/RollButton, wager > 0)
 
@@ -75,15 +84,9 @@ func _set_reserved_visible(control: Control, shown: bool) -> void:
 			if child is BaseButton:
 				child.mouse_filter = Control.MOUSE_FILTER_STOP if shown else Control.MOUSE_FILTER_IGNORE
 
-func _flash_wager_color(color: Color):
+func _flash_label(label: Label, color: Color) -> void:
 	$Action/Timer.start()
-	$Action/Wager.add_theme_color_override("font_color", color)
-	
-func _flash_wager_increase():
-	_flash_wager_color(Color.MEDIUM_SEA_GREEN)
-	
-func _flash_wager_decrease():
-	_flash_wager_color(Color.ORANGE_RED)
+	label.add_theme_color_override("font_color", color)
 
 func update_dice_result(dice1: int, dice2: int):
 	$Readout/Results/DiceResult.text = "Dice: %d + %d = %d" % [dice1, dice2, dice1 + dice2]
