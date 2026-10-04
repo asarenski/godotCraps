@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-signal bet_increased(amount: int)
-signal bet_cleared
+signal wager_increased(amount: int)
+signal wager_cleared
 signal roll_requested
 
 var dice_roller: DiceRoller
@@ -9,10 +9,10 @@ var _last_wager: int = 0
 
 func _ready():
 	hide()
-	$Action/BetButtons/Bet5.pressed.connect(_on_bet_5_pressed)
-	$Action/BetButtons/Bet10.pressed.connect(_on_bet_10_pressed)
-	$Action/BetButtons/Bet25.pressed.connect(_on_bet_25_pressed)
-	$Action/BetButtons/ClearBet.pressed.connect(_on_clear_bet_pressed)
+	$Action/WagerButtons/Wager5.pressed.connect(_on_wager_5_pressed)
+	$Action/WagerButtons/Wager10.pressed.connect(_on_wager_10_pressed)
+	$Action/WagerButtons/Wager25.pressed.connect(_on_wager_25_pressed)
+	$Action/WagerButtons/ClearWager.pressed.connect(_on_clear_wager_pressed)
 	
 	# Sibling Connections
 	dice_roller = $"../DiceRoller"
@@ -27,17 +27,17 @@ func _on_start_game():
 	show()
 
 func _on_timer_timeout() -> void:
-	$Action/Bet.remove_theme_color_override("font_color")
+	$Action/Wager.remove_theme_color_override("font_color")
 
 # --- View interface ---
 
 func show_money(balance: int, wager: int):
 	$Status/Bankroll.text = "Bankroll: %d" % balance
-	$Action/Bet.text = "Wager: %d" % wager
+	$Action/Wager.text = "Wager: %d" % wager
 	if wager > _last_wager:
-		_flash_bet_increase()
+		_flash_wager_increase()
 	elif wager < _last_wager:
-		_flash_bet_decrease()
+		_flash_wager_decrease()
 	_last_wager = wager
 	$Action/RollButton.visible = wager > 0
 
@@ -54,7 +54,7 @@ func show_phase(phase: int, point: int):
 			$Status/Phase.add_theme_color_override("font_color", Color.ORANGE_RED)
 
 func set_betting_enabled(enabled: bool):
-	$Action/BetButtons.visible = enabled
+	$Action/WagerButtons.visible = enabled
 
 func show_round_result(text: String):
 	$Readout/Results/RoundResult.text = text
@@ -66,30 +66,30 @@ func clear_results():
 
 # --- Internal ---
 
-func _flash_bet_color(color: Color):
+func _flash_wager_color(color: Color):
 	$Action/Timer.start()
-	$Action/Bet.add_theme_color_override("font_color", color)
+	$Action/Wager.add_theme_color_override("font_color", color)
 	
-func _flash_bet_increase():
-	_flash_bet_color(Color.MEDIUM_SEA_GREEN)
+func _flash_wager_increase():
+	_flash_wager_color(Color.MEDIUM_SEA_GREEN)
 	
-func _flash_bet_decrease():
-	_flash_bet_color(Color.ORANGE_RED)
+func _flash_wager_decrease():
+	_flash_wager_color(Color.ORANGE_RED)
 
 func update_dice_result(dice1: int, dice2: int):
 	$Readout/Results/DiceResult.text = "Dice: %d + %d = %d" % [dice1, dice2, dice1 + dice2]
 
-func _on_bet_5_pressed():
-	bet_increased.emit(5)
+func _on_wager_5_pressed():
+	wager_increased.emit(5)
 
-func _on_bet_10_pressed():
-	bet_increased.emit(10)
+func _on_wager_10_pressed():
+	wager_increased.emit(10)
 
-func _on_bet_25_pressed():
-	bet_increased.emit(25)
+func _on_wager_25_pressed():
+	wager_increased.emit(25)
 
-func _on_clear_bet_pressed():
-	bet_cleared.emit()
+func _on_clear_wager_pressed():
+	wager_cleared.emit()
 
 func _on_roll_start():
 	$Action/RollButton.set_disabled(true)

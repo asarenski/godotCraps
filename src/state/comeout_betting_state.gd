@@ -8,20 +8,20 @@ func setup(change_state: Callable, previous_state: State, view: Node, bankroll: 
 	view.show_money(bankroll.balance, bankroll.wager)
 	view.show_phase(State.GamePhase.COME_OUT, 0)
 	view.set_betting_enabled(true)
-	view.bet_increased.connect(_on_bet_increased)
-	view.bet_cleared.connect(_on_bet_cleared)
+	view.wager_increased.connect(_on_wager_increased)
+	view.wager_cleared.connect(_on_wager_cleared)
 	view.roll_requested.connect(_on_roll_requested, CONNECT_ONE_SHOT)
 	
 	if bankroll.balance == 0:
 		view.show_phase(State.GamePhase.GAME_OVER, 0)
 		view.set_betting_enabled(false)
 
-func _on_bet_increased(amount: int) -> void:
+func _on_wager_increased(amount: int) -> void:
 	if bankroll.place_wager(amount):
 		view.show_money(bankroll.balance, bankroll.wager)
 		view.clear_results()
 
-func _on_bet_cleared() -> void:
+func _on_wager_cleared() -> void:
 	bankroll.clear_wager()
 	view.show_money(bankroll.balance, bankroll.wager)
 	view.clear_results()

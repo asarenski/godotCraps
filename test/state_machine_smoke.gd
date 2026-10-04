@@ -4,8 +4,8 @@ const StateManagerScript := preload("res://src/state/state_manager.gd")
 const BankrollScript := preload("res://src/state/bankroll.gd")
 
 class TestView extends Node:
-	signal bet_increased(amount: int)
-	signal bet_cleared
+	signal wager_increased(amount: int)
+	signal wager_cleared
 	signal roll_requested
 
 	var money_log: Array = []
@@ -29,11 +29,11 @@ class TestView extends Node:
 	func clear_results():
 		clear_count += 1
 
-	func press_bet(amount: int):
-		bet_increased.emit(amount)
+	func press_wager(amount: int):
+		wager_increased.emit(amount)
 
 	func press_clear():
-		bet_cleared.emit()
+		wager_cleared.emit()
 
 	func press_roll():
 		roll_requested.emit()
@@ -60,11 +60,11 @@ func _run():
 	var failures: Array[String] = []
 
 	var g1 = _new_game()
-	g1.view.press_bet(5)
-	_expect(failures, g1.bankroll.balance == 95 and g1.bankroll.wager == 5, "bet 5 → 95/5")
+	g1.view.press_wager(5)
+	_expect(failures, g1.bankroll.balance == 95 and g1.bankroll.wager == 5, "wager 5 → 95/5")
 	g1.view.press_clear()
 	_expect(failures, g1.bankroll.balance == 100 and g1.bankroll.wager == 0, "clear → 100/0")
-	g1.view.press_bet(5)
+	g1.view.press_wager(5)
 	g1.dice.next_values = [3, 4]
 	g1.view.press_roll()
 	_expect(failures, g1.bankroll.balance == 100 and g1.bankroll.wager == 5, "natural 7 win → 100/5")
@@ -72,14 +72,14 @@ func _run():
 	_expect(failures, g1.view.phase_log.back()[0] == State.GamePhase.COME_OUT, "back in come-out")
 
 	var g2 = _new_game()
-	g2.view.press_bet(5)
+	g2.view.press_wager(5)
 	g2.dice.next_values = [1, 1]
 	g2.view.press_roll()
 	_expect(failures, g2.bankroll.balance == 95 and g2.bankroll.wager == 0, "craps 2 lose → 95/0")
 	_expect(failures, g2.view.result_log.back() == "You Lose!", "lose result shown")
 
 	var g3 = _new_game()
-	g3.view.press_bet(5)
+	g3.view.press_wager(5)
 	g3.dice.next_values = [3, 3]
 	g3.view.press_roll()
 	_expect(failures, g3.view.phase_log.back()[0] == State.GamePhase.POINT, "point phase shown")
@@ -90,7 +90,7 @@ func _run():
 	_expect(failures, g3.bankroll.balance == 100 and g3.bankroll.wager == 5, "hit point win → 100/5")
 
 	var g4 = _new_game()
-	g4.view.press_bet(5)
+	g4.view.press_wager(5)
 	g4.dice.next_values = [3, 3]
 	g4.view.press_roll()
 	g4.dice.next_values = [3, 4]

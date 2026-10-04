@@ -87,42 +87,42 @@ theme = ExtResource("2_dbro3")
 alignment = 1
 vertical = true
 
-[node name="Bet" type="Label" parent="HUD/Action"]
+[node name="Wager" type="Label" parent="HUD/Action"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_dbro3")
 text = "Wager: 0"
 horizontal_alignment = 1
 
-[node name="BetButtons" type="HBoxContainer" parent="HUD/Action"]
+[node name="WagerButtons" type="HBoxContainer" parent="HUD/Action"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_dbro3")
 theme_override_constants/separation = 23
 alignment = 1
 
-[node name="Bet5" type="Button" parent="HUD/Action/BetButtons"]
+[node name="Wager5" type="Button" parent="HUD/Action/WagerButtons"]
 layout_mode = 2
 theme = ExtResource("2_dbro3")
-theme_type_variation = &"BetButton"
+theme_type_variation = &"WagerButton"
 text = "+5"
 
-[node name="Bet10" type="Button" parent="HUD/Action/BetButtons"]
+[node name="Wager10" type="Button" parent="HUD/Action/WagerButtons"]
 layout_mode = 2
 theme = ExtResource("2_dbro3")
-theme_type_variation = &"BetButton"
+theme_type_variation = &"WagerButton"
 text = "+10"
 
-[node name="Bet25" type="Button" parent="HUD/Action/BetButtons"]
+[node name="Wager25" type="Button" parent="HUD/Action/WagerButtons"]
 layout_mode = 2
 theme = ExtResource("2_dbro3")
-theme_type_variation = &"BetButton"
+theme_type_variation = &"WagerButton"
 text = "+25"
 
-[node name="ClearBet" type="Button" parent="HUD/Action/BetButtons"]
+[node name="ClearWager" type="Button" parent="HUD/Action/WagerButtons"]
 layout_mode = 2
 theme = ExtResource("2_dbro3")
-theme_type_variation = &"BetButton"
+theme_type_variation = &"WagerButton"
 text = "Clear"
 
 [node name="RollButton" type="Button" parent="HUD/Action"]
