@@ -93,14 +93,10 @@ func _animate_chip(label: Label, chip: Delta.Chip) -> void:
 	var sign := "+" if chip.gain else "-"
 	var color := Color.MEDIUM_SEA_GREEN if chip.gain else Color.ORANGE_RED
 	label.add_theme_color_override("font_color", color)
+	label.text = "%s$%d" % [sign, chip.amount]
 	label.modulate.a = 1.0
 	var tween := create_tween()
 	_delta_tweens[label] = tween
-	var amount := float(chip.amount)
-	tween.tween_method(
-		func(v: float): label.text = "%s$%d" % [sign, int(v)],
-		0.0, amount, TIMING.delta_count_duration
-	)
 	tween.tween_interval(TIMING.delta_hold_duration)
 	tween.tween_property(label, "modulate:a", 0.0, TIMING.delta_fade_duration)
 

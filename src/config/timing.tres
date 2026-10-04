@@ -4,6 +4,5 @@
 
 [resource]
 script = ExtResource("1_timing")
-delta_count_duration = 0.3
-delta_hold_duration = 0.4
+delta_hold_duration = 0.45
 delta_fade_duration = 0.3
