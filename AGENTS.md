@@ -57,3 +57,17 @@ State classes: `State` (base) → `ComeOutBettingState`, `RollingState`, `PointS
 - Viewport: 480×720, `canvas_items` stretch mode
 - `.godot/` and `build/` are gitignored
 - The `package.json` exists solely for the `gh-pages` deploy script
+
+## Agent skills
+
+### Issue tracker
+
+Issues, specs, and the wayfinder map live as markdown files under `.scratch/` (local-markdown tracker, not GitHub). See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five canonical triage roles map to `Status:` line values on issue files. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `GLOSSARY.md` at the repo root and ADRs under `docs/adr/`. See `docs/agents/domain.md`.
