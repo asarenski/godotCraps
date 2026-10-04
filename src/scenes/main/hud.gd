@@ -16,6 +16,7 @@ func _ready():
 	# Sibling Connections
 	dice_roller = $"../DiceRoller"
 	dice_roller.roll_complete.connect(_on_roll_complete)
+	dice_roller.roll_start.connect(_on_roll_start)
 	$"../Start".start_game.connect(_on_start_game)
 	
 	# hide stuff
@@ -92,13 +93,13 @@ func _on_clear_bet_pressed():
 	$RollButton.hide()
 	bet_cleared.emit()
 
-func _on_roll_button_pressed():
+func _on_roll_start():
 	$RollButton.set_disabled(true)
-	roll_requested.emit()
-	dice_roller.quick_roll()
 
-func _on_roll_complete(value: int):
+func _on_roll_button_pressed():
+	roll_requested.emit()
+
+func _on_roll_complete(_total: int, values: Array):
 	$RollButton.set_disabled(false)
-	var dice_values = dice_roller.result.values()
-	update_dice_result(dice_values[0], dice_values[1])
+	update_dice_result(values[0], values[1])
 	show_dice_result()

@@ -7,8 +7,8 @@ enum RoundResult {
 	LOSE
 }
 
-func setup(change_state: Callable, previous_state: State, hud: Node, bankroll: Bankroll, _params = null) -> void:
-	super(change_state, previous_state, hud, bankroll, _params)
+func setup(change_state: Callable, previous_state: State, hud: Node, bankroll: Bankroll, dice_roller: DiceRoller, _params = null) -> void:
+	super(change_state, previous_state, hud, bankroll, dice_roller, _params)
 	
 	if _params == RoundResult.WIN:
 		bankroll.settle(true)

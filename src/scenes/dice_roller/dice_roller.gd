@@ -5,7 +5,7 @@ const DiceScenes = {
 	6: preload("./d6_dice/d6_dice.tscn")
 }
 
-signal roll_complete(value: int)
+signal roll_complete(total: int, values: Array)
 signal roll_start()
 
 const default_set := {
@@ -56,7 +56,7 @@ func _on_roll_complete(number: int, dice_name: String):
 	if result.size() < dice.size():
 		return
 	rolling = false
-	roll_complete.emit(total_value)
+	roll_complete.emit(total_value, result.values())
 
 func quick_roll():
 	"""Non-physics random values"""
