@@ -27,7 +27,6 @@ theme = ExtResource("2_dbro3")
 theme_override_font_sizes/font_size = 48
 text = "Get rollin"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="StartButton" type="Button" parent="Start"]
 anchors_preset = 7
@@ -44,98 +43,107 @@ grow_vertical = 0
 theme = ExtResource("2_dbro3")
 theme_override_font_sizes/font_size = 48
 text = "Start"
-metadata/_edit_use_anchors_ = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_o81g6")
 
-[node name="BetButtons" type="HBoxContainer" parent="HUD"]
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -160.0
-offset_bottom = -129.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_dbro3")
-theme_override_constants/separation = 23
-alignment = 1
-
-[node name="Bet5" type="Button" parent="HUD/BetButtons"]
-layout_mode = 2
-theme = ExtResource("2_dbro3")
-theme_type_variation = &"BetButton"
-text = "+5"
-
-[node name="Bet10" type="Button" parent="HUD/BetButtons"]
-layout_mode = 2
-theme = ExtResource("2_dbro3")
-theme_type_variation = &"BetButton"
-text = "+10"
-
-[node name="Bet25" type="Button" parent="HUD/BetButtons"]
-layout_mode = 2
-theme = ExtResource("2_dbro3")
-theme_type_variation = &"BetButton"
-text = "+25"
-
-[node name="ClearBet" type="Button" parent="HUD/BetButtons"]
-layout_mode = 2
-theme = ExtResource("2_dbro3")
-theme_type_variation = &"BetButton"
-text = "Clear"
-
-[node name="RollButton" type="Button" parent="HUD"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -60.0
-offset_right = 70.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_dbro3")
-theme_override_font_sizes/font_size = 36
-text = "Roll"
-
-[node name="HUDTop" type="BoxContainer" parent="HUD"]
+[node name="Status" type="BoxContainer" parent="HUD"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = -1.0
 offset_top = 40.0
 offset_right = -1.0
-offset_bottom = 117.0
+offset_bottom = 100.0
 grow_horizontal = 2
 theme = ExtResource("2_dbro3")
 alignment = 1
 vertical = true
 
-[node name="Bankroll" type="Label" parent="HUD/HUDTop"]
+[node name="Bankroll" type="Label" parent="HUD/Status"]
 layout_mode = 2
 theme = ExtResource("2_dbro3")
 text = "Bankroll: 0"
 horizontal_alignment = 1
 
-[node name="Bet" type="Label" parent="HUD/HUDTop"]
-layout_mode = 2
-theme = ExtResource("2_dbro3")
-text = "Current Bet: 0"
-horizontal_alignment = 1
-
-[node name="Phase" type="Label" parent="HUD/HUDTop"]
+[node name="Phase" type="Label" parent="HUD/Status"]
 layout_mode = 2
 theme = ExtResource("2_dbro3")
 text = "Phase or Point"
 horizontal_alignment = 1
 
-[node name="Timer" type="Timer" parent="HUD/HUDTop"]
+[node name="Action" type="BoxContainer" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -160.0
+offset_right = 240.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_dbro3")
+alignment = 1
+vertical = true
+
+[node name="Bet" type="Label" parent="HUD/Action"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_dbro3")
+text = "Current Bet: 0"
+horizontal_alignment = 1
+
+[node name="BetButtons" type="HBoxContainer" parent="HUD/Action"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_dbro3")
+theme_override_constants/separation = 23
+alignment = 1
+
+[node name="Bet5" type="Button" parent="HUD/Action/BetButtons"]
+layout_mode = 2
+theme = ExtResource("2_dbro3")
+theme_type_variation = &"BetButton"
+text = "+5"
+
+[node name="Bet10" type="Button" parent="HUD/Action/BetButtons"]
+layout_mode = 2
+theme = ExtResource("2_dbro3")
+theme_type_variation = &"BetButton"
+text = "+10"
+
+[node name="Bet25" type="Button" parent="HUD/Action/BetButtons"]
+layout_mode = 2
+theme = ExtResource("2_dbro3")
+theme_type_variation = &"BetButton"
+text = "+25"
+
+[node name="ClearBet" type="Button" parent="HUD/Action/BetButtons"]
+layout_mode = 2
+theme = ExtResource("2_dbro3")
+theme_type_variation = &"BetButton"
+text = "Clear"
+
+[node name="RollButton" type="Button" parent="HUD/Action"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_dbro3")
+theme_override_font_sizes/font_size = 36
+text = "Roll"
+
+[node name="Timer" type="Timer" parent="HUD/Action"]
 wait_time = 0.25
 
-[node name="Results" type="BoxContainer" parent="HUD"]
+[node name="Readout" type="Control" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Results" type="BoxContainer" parent="HUD/Readout"]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -149,19 +157,19 @@ theme = ExtResource("2_dbro3")
 alignment = 1
 vertical = true
 
-[node name="DiceResult" type="Label" parent="HUD/Results"]
+[node name="DiceResult" type="Label" parent="HUD/Readout/Results"]
 layout_mode = 2
 theme = ExtResource("2_dbro3")
 text = "Dice Result"
 horizontal_alignment = 1
 
-[node name="RoundResult" type="Label" parent="HUD/Results"]
+[node name="RoundResult" type="Label" parent="HUD/Readout/Results"]
 layout_mode = 2
 theme = ExtResource("2_dbro3")
 text = "Round Result"
 horizontal_alignment = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HUD"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HUD/Readout"]
 top_level = true
 anchors_preset = -1
 anchor_left = 0.5
@@ -173,16 +181,16 @@ offset_top = -114.08
 offset_right = 240.0
 offset_bottom = 13.92
 
-[node name="RollViewPort" type="SubViewport" parent="HUD/SubViewportContainer"]
+[node name="RollViewPort" type="SubViewport" parent="HUD/Readout/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(480, 128)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="HUD/SubViewportContainer/RollViewPort"]
+[node name="Camera3D" type="Camera3D" parent="HUD/Readout/SubViewportContainer/RollViewPort"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
 fov = 45.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HUD/SubViewportContainer/RollViewPort"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HUD/Readout/SubViewportContainer/RollViewPort"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, 0)
 
 [node name="DiceRoller" type="Node" parent="."]
@@ -194,5 +202,5 @@ script = ExtResource("5_o81g6")
 metadata/_custom_type_script = "uid://gi80v51vaumc"
 
 [connection signal="pressed" from="Start/StartButton" to="Start" method="_on_start_button_pressed"]
-[connection signal="pressed" from="HUD/RollButton" to="HUD" method="_on_roll_button_pressed"]
-[connection signal="timeout" from="HUD/HUDTop/Timer" to="HUD" method="_on_timer_timeout"]
+[connection signal="pressed" from="HUD/Action/RollButton" to="HUD" method="_on_roll_button_pressed"]
+[connection signal="timeout" from="HUD/Action/Timer" to="HUD" method="_on_timer_timeout"]
