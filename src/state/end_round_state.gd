@@ -7,18 +7,18 @@ enum RoundResult {
 	LOSE
 }
 
-func setup(change_state: Callable, previous_state: State, hud: Node, _params = null) -> void:
-	super(change_state, previous_state, hud, _params)
+func setup(change_state: Callable, previous_state: State, hud: Node, bankroll: Bankroll, _params = null) -> void:
+	super(change_state, previous_state, hud, bankroll, _params)
 	
 	if _params == RoundResult.WIN:
-		bankroll += bet * 2
+		bankroll.settle(true)
 		hud.update_round_result("You Win!")
 	else:
+		bankroll.settle(false)
 		hud.update_round_result("You Lose!")
 	
-	bet = 0
-	update_bet(bet)
-	hud.update_bankroll(bankroll)
+	hud.update_bet(bankroll.wager, "decrease")
+	hud.update_bankroll(bankroll.balance)
 	hud.show_round_result()
 	
-	change_state.call(StateFactory.StateNames.COMEOUT_BETTING) 
+	change_state.call(StateFactory.StateNames.COMEOUT_BETTING)
