@@ -39,7 +39,7 @@ func show_money(balance: int, wager: int):
 	elif wager < _last_wager:
 		_flash_wager_decrease()
 	_last_wager = wager
-	$Action/RollButton.visible = wager > 0
+	_set_reserved_visible($Action/RollButton, wager > 0)
 
 func show_phase(phase: int, point: int):
 	match phase:
@@ -54,7 +54,7 @@ func show_phase(phase: int, point: int):
 			$Status/Phase.add_theme_color_override("font_color", Color.ORANGE_RED)
 
 func set_betting_enabled(enabled: bool):
-	$Action/WagerButtons.visible = enabled
+	_set_reserved_visible($Action/WagerButtons, enabled)
 
 func show_round_result(text: String):
 	$Readout/Results/RoundResult.text = text
@@ -65,6 +65,15 @@ func clear_results():
 	$Readout/Results/RoundResult.hide()
 
 # --- Internal ---
+
+func _set_reserved_visible(control: Control, shown: bool) -> void:
+	control.modulate.a = 1.0 if shown else 0.0
+	if control is BaseButton:
+		control.disabled = not shown
+	else:
+		for child in control.get_children():
+			if child is BaseButton:
+				child.disabled = not shown
 
 func _flash_wager_color(color: Color):
 	$Action/Timer.start()
