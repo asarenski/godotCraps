@@ -1,0 +1,3 @@
+# On-table win resolution
+
+In standard craps a Pass-line win returns the bet to the player. godotCraps instead keeps the wager committed on the table after a win, paying only the even-money profit into the bankroll; the player clears the bet to take it back. This makes a win feel like "keep going" rather than "re-place your bet", and it keeps the bankroll's `+$` delta reading cleanly as net profit rather than a raw stake-plus-profit jump. We chose this over the standard return-the-bet because the persistent wager preserves a winning streak without friction, at the cost of the player having to explicitly clear to cash out their stake.

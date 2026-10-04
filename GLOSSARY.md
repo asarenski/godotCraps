@@ -9,8 +9,12 @@ The player's total money, from which wagers are placed and into which winnings a
 _Avoid_: Wallet, purse, money
 
 **Wager**:
-The amount currently committed to the active Pass or Don't Pass bet. Placed from the bankroll; settled when the point cycle resolves.
+The amount currently committed on the table. Placed from the bankroll; on a win the wager stays on the table and only the even-money profit is paid out, and it is returned by clearing or lost on a losing roll.
 _Avoid_: Bet, stake
+
+**Delta**:
+The small colored `+$N` / `-$N` indicator shown next to a number when it changes, green for gain, red for loss. It shows the net result of an action, not the raw balance movement.
+_Avoid_: Fluctuation, swing
 
 **Come-out roll**:
 The first throw of a point cycle, made before a point is established: 7 or 11 wins, 2, 3, or 12 loses, and any other total establishes the point.
