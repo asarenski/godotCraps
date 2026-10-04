@@ -33,7 +33,7 @@ func _on_timer_timeout() -> void:
 
 func show_money(balance: int, wager: int):
 	$Status/Bankroll.text = "Bankroll: %d" % balance
-	$Action/Bet.text = "Current Bet: %d" % wager
+	$Action/Bet.text = "Wager: %d" % wager
 	if wager > _last_wager:
 		_flash_bet_increase()
 	elif wager < _last_wager:

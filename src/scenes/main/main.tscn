@@ -91,7 +91,7 @@ vertical = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_dbro3")
-text = "Current Bet: 0"
+text = "Wager: 0"
 horizontal_alignment = 1
 
 [node name="BetButtons" type="HBoxContainer" parent="HUD/Action"]
