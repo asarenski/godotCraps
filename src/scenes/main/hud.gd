@@ -5,6 +5,7 @@ signal bet_cleared
 signal roll_requested
 
 var dice_roller: DiceRoller
+var _last_wager: int = 0
 
 func _ready():
 	hide()
@@ -20,8 +21,7 @@ func _ready():
 	$"../Start".start_game.connect(_on_start_game)
 	
 	# hide stuff
-	hide_dice_result()
-	hide_round_result()
+	clear_results()
 
 func _on_start_game():
 	show()
@@ -29,8 +29,42 @@ func _on_start_game():
 func _on_timer_timeout() -> void:
 	$HUDTop/Bet.remove_theme_color_override("font_color")
 
-func update_bankroll(bankroll):
-	$HUDTop/Bankroll.text = "Bankroll: %d" % bankroll
+# --- View interface ---
+
+func show_money(balance: int, wager: int):
+	$HUDTop/Bankroll.text = "Bankroll: %d" % balance
+	$HUDTop/Bet.text = "Current Bet: %d" % wager
+	if wager > _last_wager:
+		_flash_bet_increase()
+	elif wager < _last_wager:
+		_flash_bet_decrease()
+	_last_wager = wager
+	$RollButton.visible = wager > 0
+
+func show_phase(phase: int, point: int):
+	match phase:
+		State.GamePhase.COME_OUT:
+			$HUDTop/Phase.text = "Come Out"
+			$HUDTop/Phase.remove_theme_color_override("font_color")
+		State.GamePhase.POINT:
+			$HUDTop/Phase.text = "Point: %d" % point
+			$HUDTop/Phase.add_theme_color_override("font_color", Color.GOLD)
+		State.GamePhase.GAME_OVER:
+			$HUDTop/Phase.text = "GAME OVER"
+			$HUDTop/Phase.add_theme_color_override("font_color", Color.ORANGE_RED)
+
+func set_betting_enabled(enabled: bool):
+	$BetButtons.visible = enabled
+
+func show_round_result(text: String):
+	$Results/RoundResult.text = text
+	$Results/RoundResult.show()
+
+func clear_results():
+	$Results/DiceResult.hide()
+	$Results/RoundResult.hide()
+
+# --- Internal ---
 
 func _flash_bet_color(color: Color):
 	$HUDTop/Timer.start()
@@ -42,55 +76,19 @@ func _flash_bet_increase():
 func _flash_bet_decrease():
 	_flash_bet_color(Color.ORANGE_RED)
 
-func update_bet(bet: int, type: String):
-	if type == "increase":
-		_flash_bet_increase()
-	else:
-		_flash_bet_decrease()
-	
-	$HUDTop/Bet.text = "Current Bet: %d" % bet
-
-func update_phase(phase_text: String, type: String):
-	$HUDTop/Phase.text = phase_text
-	if type == "point":
-		$HUDTop/Phase.add_theme_color_override("font_color", Color.GOLD)
-	elif type == "game_over":
-		$HUDTop/Phase.add_theme_color_override("font_color", Color.ORANGE_RED)
-	else:
-		$HUDTop/Phase.remove_theme_color_override("font_color")
-
 func update_dice_result(dice1: int, dice2: int):
 	$Results/DiceResult.text = "Dice: %d + %d = %d" % [dice1, dice2, dice1 + dice2]
 
-func update_round_result(result_text: String):
-	$Results/RoundResult.text = result_text
-	
-func show_dice_result():
-	$Results/DiceResult.show()
-
-func hide_dice_result():
-	$Results/DiceResult.hide()
-	
-func show_round_result():
-	$Results/RoundResult.show()
-	
-func hide_round_result():
-	$Results/RoundResult.hide()
-
 func _on_bet_5_pressed():
-	$RollButton.show()
 	bet_increased.emit(5)
 
 func _on_bet_10_pressed():
-	$RollButton.show()
 	bet_increased.emit(10)
 
 func _on_bet_25_pressed():
-	$RollButton.show()
 	bet_increased.emit(25)
 
 func _on_clear_bet_pressed():
-	$RollButton.hide()
 	bet_cleared.emit()
 
 func _on_roll_start():
@@ -102,4 +100,4 @@ func _on_roll_button_pressed():
 func _on_roll_complete(_total: int, values: Array):
 	$RollButton.set_disabled(false)
 	update_dice_result(values[0], values[1])
-	show_dice_result()
+	$Results/DiceResult.show()

@@ -2,34 +2,29 @@ extends State
 
 class_name ComeOutBettingState
 
-func setup(change_state: Callable, previous_state: State, hud: Node, bankroll: Bankroll, dice_roller: DiceRoller, _params = null) -> void:
-	super(change_state, previous_state, hud, bankroll, dice_roller, _params)
+func setup(change_state: Callable, previous_state: State, view: Node, bankroll: Bankroll, dice_roller: DiceRoller, _params = null) -> void:
+	super(change_state, previous_state, view, bankroll, dice_roller, _params)
 	point = null
-	hud.update_bankroll(bankroll.balance)
-	hud.update_phase("Come Out", "comeout")
-	hud.get_node("BetButtons").show()
-	hud.get_node("RollButton").hide()
-	hud.bet_increased.connect(_on_bet_increased)
-	hud.bet_cleared.connect(_on_bet_cleared)
-	hud.roll_requested.connect(_on_roll_requested)
+	view.show_money(bankroll.balance, bankroll.wager)
+	view.show_phase(State.GamePhase.COME_OUT, 0)
+	view.set_betting_enabled(true)
+	view.bet_increased.connect(_on_bet_increased)
+	view.bet_cleared.connect(_on_bet_cleared)
+	view.roll_requested.connect(_on_roll_requested)
 	
 	if bankroll.balance == 0:
-		hud.update_phase("GAME OVER", "game_over")
-		hud.get_node("BetButtons").hide()
+		view.show_phase(State.GamePhase.GAME_OVER, 0)
+		view.set_betting_enabled(false)
 
 func _on_bet_increased(amount: int) -> void:
 	if bankroll.place_wager(amount):
-		hud.update_bankroll(bankroll.balance)
-		hud.update_bet(bankroll.wager, "increase")
-		hud.hide_dice_result()
-		hud.hide_round_result()
+		view.show_money(bankroll.balance, bankroll.wager)
+		view.clear_results()
 
 func _on_bet_cleared() -> void:
 	bankroll.clear_wager()
-	hud.update_bankroll(bankroll.balance)
-	hud.update_bet(bankroll.wager, "decrease")
-	hud.hide_dice_result()
-	hud.hide_round_result()
+	view.show_money(bankroll.balance, bankroll.wager)
+	view.clear_results()
 
 func _on_roll_requested() -> void:
 	if bankroll.wager > 0:

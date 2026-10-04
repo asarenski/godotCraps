@@ -2,8 +2,8 @@ extends State
 
 class_name RollingState
 
-func setup(change_state: Callable, previous_state: State, hud: Node, bankroll: Bankroll, dice_roller: DiceRoller, _params = null) -> void:
-	super(change_state, previous_state, hud, bankroll, dice_roller, _params)
+func setup(change_state: Callable, previous_state: State, view: Node, bankroll: Bankroll, dice_roller: DiceRoller, _params = null) -> void:
+	super(change_state, previous_state, view, bankroll, dice_roller, _params)
 	dice_roller.roll_complete.connect(_on_roll_complete)
 	dice_roller.quick_roll()
 
