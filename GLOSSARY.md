@@ -12,6 +12,9 @@ _Avoid_: Wallet, purse, money
 The amount currently committed to the active Pass or Don't Pass bet. Placed from the bankroll; settled when the point cycle resolves.
 _Avoid_: Bet, stake
 
+**Come-out roll**:
+The first throw of a point cycle, made before a point is established: 7 or 11 wins, 2, 3, or 12 loses, and any other total establishes the point.
+
 **Point**:
 The number established by a come-out roll (4, 5, 6, 8, 9, or 10) that must be rolled again before a 7 to win the point cycle.
 _Avoid_: Target, goal

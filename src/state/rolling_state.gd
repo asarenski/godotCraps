@@ -8,22 +8,13 @@ func setup(change_state: Callable, previous_state: State, hud: Node, bankroll: B
 	hud.dice_roller.roll_complete.connect(_on_roll_complete)
 
 func _on_roll_complete(dice_result: int) -> void:
-	# Determine next state based on roll result
-	if point == null:  # Come-out roll
-		match dice_result:
-			7, 11:
-				change_state.call(StateFactory.StateNames.END_ROUND, EndRoundState.RoundResult.WIN)
-			2, 3, 12:
-				change_state.call(StateFactory.StateNames.END_ROUND, EndRoundState.RoundResult.LOSE)
-			_:
-				# Point established
-				point = dice_result
-				change_state.call(StateFactory.StateNames.POINT)
-	else:  # POINT phase
-		if dice_result == point:
+	match CrapsRules.resolve(dice_result, point):
+		CrapsRules.Outcome.WIN:
 			change_state.call(StateFactory.StateNames.END_ROUND, EndRoundState.RoundResult.WIN)
-		elif dice_result == 7:
+		CrapsRules.Outcome.LOSE:
 			change_state.call(StateFactory.StateNames.END_ROUND, EndRoundState.RoundResult.LOSE)
-		else:
-			# Continue point phase
+		CrapsRules.Outcome.ESTABLISH_POINT:
+			point = dice_result
+			change_state.call(StateFactory.StateNames.POINT)
+		CrapsRules.Outcome.CONTINUE:
 			change_state.call(StateFactory.StateNames.POINT)
