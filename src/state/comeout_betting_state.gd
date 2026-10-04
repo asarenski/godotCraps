@@ -10,7 +10,7 @@ func setup(change_state: Callable, previous_state: State, view: Node, bankroll: 
 	view.set_betting_enabled(true)
 	view.bet_increased.connect(_on_bet_increased)
 	view.bet_cleared.connect(_on_bet_cleared)
-	view.roll_requested.connect(_on_roll_requested)
+	view.roll_requested.connect(_on_roll_requested, CONNECT_ONE_SHOT)
 	
 	if bankroll.balance == 0:
 		view.show_phase(State.GamePhase.GAME_OVER, 0)

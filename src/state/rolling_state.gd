@@ -4,7 +4,7 @@ class_name RollingState
 
 func setup(change_state: Callable, previous_state: State, view: Node, bankroll: Bankroll, dice_roller: DiceRoller, _params = null) -> void:
 	super(change_state, previous_state, view, bankroll, dice_roller, _params)
-	dice_roller.roll_complete.connect(_on_roll_complete)
+	dice_roller.roll_complete.connect(_on_roll_complete, CONNECT_ONE_SHOT)
 	dice_roller.quick_roll()
 
 func _on_roll_complete(total: int, _values: Array) -> void:

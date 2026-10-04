@@ -24,9 +24,7 @@ func clear_wager() -> int:
 
 func settle(won: bool) -> int:
 	if won:
-		var payout := wager * 2
-		balance += payout
-		wager = 0
-		return payout
+		balance += wager
+		return wager
 	wager = 0
 	return 0

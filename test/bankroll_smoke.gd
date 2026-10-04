@@ -19,11 +19,14 @@ func _init():
 	_expect(failures, b.clear_wager() == 25, "clear returns amount")
 	_expect(failures, b.balance == 100 and b.wager == 0, "clear restores balance")
 
-	b.place_wager(50)
-	_expect(failures, b.settle(true) == 100, "win pays 2x")
-	_expect(failures, b.balance == 150 and b.wager == 0, "win updates balance")
+	b.place_wager(25)
+	_expect(failures, b.settle(true) == 25, "win pays even-money profit")
+	_expect(failures, b.balance == 100 and b.wager == 25, "win keeps wager on table")
 
-	b.place_wager(50)
+	_expect(failures, b.clear_wager() == 25, "clear after win returns wager")
+	_expect(failures, b.balance == 125 and b.wager == 0, "clear after win restores balance")
+
+	b.place_wager(25)
 	_expect(failures, b.settle(false) == 0, "loss pays 0")
 	_expect(failures, b.balance == 100 and b.wager == 0, "loss keeps balance debited")
 

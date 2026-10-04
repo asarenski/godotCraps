@@ -67,7 +67,7 @@ func _run():
 	g1.view.press_bet(5)
 	g1.dice.next_values = [3, 4]
 	g1.view.press_roll()
-	_expect(failures, g1.bankroll.balance == 105 and g1.bankroll.wager == 0, "natural 7 win → 105/0")
+	_expect(failures, g1.bankroll.balance == 100 and g1.bankroll.wager == 5, "natural 7 win → 100/5")
 	_expect(failures, g1.view.result_log.back() == "You Win!", "win result shown")
 	_expect(failures, g1.view.phase_log.back()[0] == State.GamePhase.COME_OUT, "back in come-out")
 
@@ -87,7 +87,7 @@ func _run():
 	_expect(failures, g3.bankroll.balance == 95 and g3.bankroll.wager == 5, "wager held through point")
 	g3.dice.next_values = [3, 3]
 	g3.view.press_roll()
-	_expect(failures, g3.bankroll.balance == 105 and g3.bankroll.wager == 0, "hit point win → 105/0")
+	_expect(failures, g3.bankroll.balance == 100 and g3.bankroll.wager == 5, "hit point win → 100/5")
 
 	var g4 = _new_game()
 	g4.view.press_bet(5)
